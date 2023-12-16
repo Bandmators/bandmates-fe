@@ -1,4 +1,4 @@
-import { Global, ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@emotion/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -9,7 +9,7 @@ import theme from './styles/theme.ts';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Global styles={GlobalStyle(theme)} />
+      <GlobalStyle />
       <App />
     </ThemeProvider>
   </React.StrictMode>,

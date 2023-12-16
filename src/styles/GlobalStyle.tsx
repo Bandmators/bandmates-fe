@@ -1,6 +1,8 @@
-import { Theme, css } from '@emotion/react';
+import { Global, Theme, css } from '@emotion/react';
 
-const GlobalStyle = (theme: Theme) => css`
+import theme from './theme';
+
+const GlobalCustomStyle = (theme: Theme) => css`
   *,
   ::after,
   ::before {
@@ -24,4 +26,6 @@ const GlobalStyle = (theme: Theme) => css`
   }
 `;
 
-export default GlobalStyle;
+export default function GlobalStyle() {
+  return <Global styles={GlobalCustomStyle(theme)} />;
+}

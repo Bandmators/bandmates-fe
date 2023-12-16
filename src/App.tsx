@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import reactLogo from './assets/react.svg';
+import Button from './components/common/button';
 import viteLogo from '/vite.svg';
 
 function App() {
@@ -30,7 +30,3 @@ function App() {
 }
 
 export default App;
-
-const Button = styled.button`
-  background-color: tomato;
-`;
