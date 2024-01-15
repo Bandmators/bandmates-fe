@@ -5,5 +5,5 @@
 npx lint-staged
 
 # test
-# npm test
+pnpm run testOnce
 
