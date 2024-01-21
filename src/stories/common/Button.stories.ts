@@ -62,3 +62,10 @@ export const Ghost: Story = {
     ...Primary.args,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    ...Primary.args,
+  },
+};

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Input from '@/components/common/input';
+import Input, { InputGroup } from '@/components/common/input';
+import Label from '@/components/common/label';
 
 const meta = {
   title: 'common/Input',
@@ -26,5 +27,22 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
+  },
+};
+
+export const WithLabel: Story = {
+  decorators: [
+    Story => {
+      return (
+        <InputGroup>
+          <Label htmlFor="email">Email</Label>
+          <Story />
+        </InputGroup>
+      );
+    },
+  ],
+  args: {
+    id: 'email',
+    placeholder: 'Email',
   },
 };

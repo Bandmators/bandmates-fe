@@ -75,6 +75,14 @@ const StyledButton = styled.button<ButtonVariantProps>`
   ${({ theme, variant }) => variant && ButtonVariantStyles({ theme, variant })}
 
   ${({ size }) => size && ButtonSizeStyles({ size })}
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed;
+    `}
 `;
 
 export interface ButtonVariantProps {
