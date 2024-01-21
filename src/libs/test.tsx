@@ -1,6 +1,7 @@
 import { RenderOptions, render } from '@testing-library/react';
 // import { MemoryRouter } from "react-router-dom"
 import { ReactElement } from 'react';
+import { MemoryRouter, Routes } from 'react-router-dom';
 
 import StyledProvider from '@/components/provider/StyledProvider';
 
@@ -41,3 +42,11 @@ export const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wr
 export * from '@testing-library/react';
 
 export { customRender as render };
+
+export const MockRouter = ({ initialPath = '/', children }: { initialPath: string; children: React.ReactNode }) => {
+  return (
+    <MemoryRouter initialEntries={[initialPath]} initialIndex={0}>
+      <Routes>{children}</Routes>
+    </MemoryRouter>
+  );
+};
