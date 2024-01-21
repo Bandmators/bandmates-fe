@@ -3,6 +3,7 @@ import { Theme } from '@emotion/react';
 export const baseColors = {
   white: '#FAFAFA',
   black: '#212121',
+  primary: '#212121',
   gray: {
     50: '#FAFAFA',
     100: '#F5F5F5',
@@ -15,6 +16,8 @@ export const baseColors = {
     800: '#424242',
     900: '#212121',
   },
+  danger: '#ef4444',
+  warning: '#ffb029',
 };
 export type ColorTypes = typeof baseColors;
 

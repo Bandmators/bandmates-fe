@@ -16,7 +16,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<React.ComponentProps<'button'>>;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 
@@ -30,6 +30,35 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
+    variant: 'secondary',
+    ...Primary.args,
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    variant: 'danger',
+    ...Primary.args,
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    variant: 'warning',
+    ...Primary.args,
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    ...Primary.args,
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    variant: 'ghost',
     ...Primary.args,
   },
 };
