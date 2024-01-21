@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {},
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
     componentSubtitle: 'Base Button',
     docs: {
       description: {
