@@ -4,16 +4,19 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import StyledProvider from '@/components/provider/StyledProvider.tsx';
 
-import App from './App.tsx';
+import Auth from './pages/auth';
+import Dashboard from './pages/dashboard';
+
+// import App from './App.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <Dashboard />,
   },
   {
-    path: '/testsuccess',
-    element: <p>End</p>,
+    path: '/auth',
+    element: <Auth />,
   },
 ]);
 

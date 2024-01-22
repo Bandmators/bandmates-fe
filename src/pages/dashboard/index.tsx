@@ -1,17 +1,16 @@
 import { useState } from 'react';
 
 import Button from '@/components/common/button';
+import Form from '@/components/common/form';
+import Input, { InputDesc, InputGroup } from '@/components/common/input';
+import Label from '@/components/common/label';
+import Textarea from '@/components/common/textarea';
+import AppLayout from '@/components/layout/AppLayout';
 
-import Form from './components/common/form';
-import Input, { InputDesc, InputGroup } from './components/common/input';
-import Label from './components/common/label';
-import Textarea from './components/common/textarea';
-
-function App() {
+const Dashboard = () => {
   const [count, setCount] = useState(0);
-
   return (
-    <>
+    <AppLayout>
       <div className="card">
         <Button onClick={() => setCount(count => count + 1)}>count is {count}</Button>
         <p>
@@ -32,8 +31,7 @@ function App() {
         </InputGroup>
         <Button type="submit">Save</Button>
       </Form>
-    </>
+    </AppLayout>
   );
-}
-
-export default App;
+};
+export default Dashboard;

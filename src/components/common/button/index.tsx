@@ -43,7 +43,7 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
   }
 };
 
-const ButtonSizeStyles = ({ size }: { size: SizeType }) => {
+const ButtonSizeStyles = ({ size }: { size: SizeType | 'icon' }) => {
   switch (size) {
     case 'sm':
       return css`
@@ -52,6 +52,14 @@ const ButtonSizeStyles = ({ size }: { size: SizeType }) => {
     case 'lg':
       return css`
         padding: 0.75rem 1.5rem;
+      `;
+    case 'icon':
+      return css`
+        padding: 0.375rem;
+        img {
+          width: 20px;
+          height: 20px;
+        }
       `;
     case 'md':
     default:
@@ -100,7 +108,7 @@ export interface ButtonVariantProps {
   /*
     Button size
   */
-  size?: SizeType;
+  size?: SizeType | 'icon';
   /*
     width full (width: 100%)
   */

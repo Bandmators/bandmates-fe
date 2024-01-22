@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import Button from '@/components/common/button';
 
+import Plus from '@/assets/icons/plus.svg';
+
 const meta = {
   title: 'common/Button',
   component: Button,
@@ -61,6 +63,21 @@ export const Ghost: Story = {
     variant: 'ghost',
     ...Primary.args,
   },
+};
+
+export const Icon: Story = {
+  args: {
+    ...Ghost.args,
+  },
+  decorators: [
+    Story => {
+      return (
+        <Story>
+          <img src={Plus} alt="+" />
+        </Story>
+      );
+    },
+  ],
 };
 
 export const Disabled: Story = {
