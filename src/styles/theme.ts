@@ -1,6 +1,7 @@
 import { Theme } from '@emotion/react';
 
 export const baseColors = {
+  bg: '#FFF',
   white: '#FAFAFA',
   black: '#212121',
   primary: '#212121',

@@ -2,8 +2,9 @@ import { Theme, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { ComponentPropsWithoutRef } from 'react';
 
+import { SizeType } from '@/types/size';
+
 type ButtonVariantType = 'primary' | 'secondary' | 'warning' | 'danger' | 'outline' | 'ghost';
-type ButtonSizeType = 'sm' | 'md' | 'lg';
 
 const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: ButtonVariantType }) => {
   switch (variant) {
@@ -42,7 +43,7 @@ const ButtonVariantStyles = ({ theme, variant }: { theme: Theme; variant: Button
   }
 };
 
-const ButtonSizeStyles = ({ size }: { size: ButtonSizeType }) => {
+const ButtonSizeStyles = ({ size }: { size: SizeType }) => {
   switch (size) {
     case 'sm':
       return css`
@@ -76,6 +77,12 @@ const StyledButton = styled.button<ButtonVariantProps>`
 
   ${({ size }) => size && ButtonSizeStyles({ size })}
 
+  ${({ full }) =>
+    full &&
+    css`
+      width: 100%;
+    `}
+
   ${({ disabled }) =>
     disabled &&
     css`
@@ -93,14 +100,18 @@ export interface ButtonVariantProps {
   /*
     Button size
   */
-  size?: ButtonSizeType;
+  size?: SizeType;
+  /*
+    width full (width: 100%)
+  */
+  full?: boolean;
 }
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'>, ButtonVariantProps {}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', children, ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', children, full = false, ...props }, ref) => {
     return (
-      <StyledButton ref={ref} className={className} variant={variant} size={size} {...props}>
+      <StyledButton ref={ref} className={className} variant={variant} full={full} size={size} {...props}>
         {children}
       </StyledButton>
     );
