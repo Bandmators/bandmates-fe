@@ -22,7 +22,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "bmates-ui/*": ["./bmates-ui/dist/*"]
     }
   },
   "include": ["src"],

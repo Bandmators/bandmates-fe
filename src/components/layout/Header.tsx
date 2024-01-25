@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
-
-import Avatar from '@/components/common/avatar';
-import Button from '@/components/common/button';
+import { Avatar, Button } from 'bmates-ui';
 
 import BandmatesLogo from '@/assets/bandmate.png';
 import Plus from '@/assets/icons/plus.svg';

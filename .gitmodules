@@ -1,0 +1,3 @@
+[submodule "bmates-ui"]
+	path = bmates-ui
+	url = https://github.com/Bandmators/bmates-ui.git

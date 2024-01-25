@@ -1,10 +1,11 @@
+import { Button, Form, Input, InputDesc, InputGroup, Label, Textarea } from 'bmates-ui';
 import { useState } from 'react';
 
-import Button from '@/components/common/button';
-import Form from '@/components/common/form';
-import Input, { InputDesc, InputGroup } from '@/components/common/input';
-import Label from '@/components/common/label';
-import Textarea from '@/components/common/textarea';
+// import Button from '@/components/common/button';
+// import Form from '@/components/common/form';
+// import Input, { InputDesc, InputGroup } from '@/components/common/input';
+// import Label from '@/components/common/label';
+// import Textarea from '@/components/common/textarea';
 import AppLayout from '@/components/layout/AppLayout';
 
 const Dashboard = () => {
