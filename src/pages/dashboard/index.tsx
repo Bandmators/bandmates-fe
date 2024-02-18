@@ -1,5 +1,5 @@
 import { Button, Form, Input, InputDesc, InputGroup, Label, Textarea } from 'bmates-ui';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // import Button from '@/components/common/button';
 // import Form from '@/components/common/form';
@@ -10,6 +10,16 @@ import AppLayout from '@/components/layout/AppLayout';
 
 const Dashboard = () => {
   const [count, setCount] = useState(0);
+  const [data, setData] = useState();
+  useEffect(() => {
+    fetch('/aaa')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setData(data);
+      });
+  }, []);
+
   return (
     <AppLayout>
       <div className="card">
@@ -19,7 +29,7 @@ const Dashboard = () => {
         </p>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-
+      DATA: {JSON.stringify(data)}
       <Form redirect="testsuccess">
         <InputGroup>
           <Label htmlFor="email">Email</Label>

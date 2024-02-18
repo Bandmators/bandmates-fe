@@ -20,10 +20,22 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <StyledProvider>
-      <RouterProvider router={router} />
-    </StyledProvider>
-  </React.StrictMode>,
-);
+async function enableMocking() {
+  if (!import.meta.env.DEV) {
+    return;
+  }
+
+  const { worker } = await import('./mocks/browser.ts');
+
+  return worker.start();
+}
+
+enableMocking().then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <StyledProvider>
+        <RouterProvider router={router} />
+      </StyledProvider>
+    </React.StrictMode>,
+  );
+});
