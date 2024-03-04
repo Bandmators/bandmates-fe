@@ -4,8 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import StyledProvider from '@/components/provider/StyledProvider.tsx';
 
-import Auth from './pages/auth';
-import Dashboard from './pages/dashboard';
+import Auth from './pages/AuthPage/index.tsx';
+import Dashboard from './pages/DashboardPage/index.tsx';
 
 // import App from './App.tsx';
 

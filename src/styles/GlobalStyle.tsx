@@ -35,6 +35,11 @@ const GlobalCustomStyle = (theme: Theme) => css`
     font-family: inherit;
   }
 
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   ::selection {
     background: ${theme.colors.primary};
     color: white;
