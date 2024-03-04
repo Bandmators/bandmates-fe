@@ -1,24 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 
 import StyledProvider from '@/components/provider/StyledProvider.tsx';
 
-import Auth from './pages/AuthPage/index.tsx';
-import Dashboard from './pages/DashboardPage/index.tsx';
-
-// import App from './App.tsx';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Dashboard />,
-  },
-  {
-    path: '/auth',
-    element: <Auth />,
-  },
-]);
+import { router } from '@/routes/index.tsx';
 
 async function enableMocking() {
   if (!import.meta.env.DEV) {
