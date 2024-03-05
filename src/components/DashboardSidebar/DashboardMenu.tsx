@@ -1,27 +1,27 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import ArtistIcon from '@/assets/icons/headphones.svg';
-import FeedIcon from '@/assets/icons/home.svg';
-import RandomIcon from '@/assets/icons/rotate-cw.svg';
+import { ReactComponent as ArtistIcon } from '@/assets/icons/headphones.svg';
+import { ReactComponent as FeedIcon } from '@/assets/icons/home.svg';
+import { ReactComponent as RandomIcon } from '@/assets/icons/rotate-cw.svg';
 
 const DashboardMenu = () => {
   return (
     <DahsboardMenuList>
       <DashboardMenuItem>
         <Link to="#">
-          <img src={FeedIcon} alt=" " /> Feed
+          <FeedIcon /> Feed
         </Link>
       </DashboardMenuItem>
       <DashboardMenuItem>
         <Link to="#">
-          <img src={ArtistIcon} alt=" " />
+          <ArtistIcon />
           Artists
         </Link>
       </DashboardMenuItem>
       <DashboardMenuItem>
         <Link to="#">
-          <img src={RandomIcon} alt=" " />
+          <RandomIcon />
           Random
         </Link>
       </DashboardMenuItem>
@@ -45,7 +45,7 @@ const DashboardMenuItem = styled.li`
     display: flex;
     align-items: center;
     font-weight: 500;
-    img {
+    svg {
       margin-right: 1rem;
     }
   }

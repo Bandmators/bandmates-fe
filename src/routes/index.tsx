@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Auth from '@/pages/AuthPage';
+import SigninPage from '@/pages/AuthPage/SigninPage';
+import SignupPage from '@/pages/AuthPage/SignupPage';
 import Dashboard from '@/pages/DashboardPage';
 
 export const PATH = {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
   },
   {
     path: PATH.AUTH.SIGNIN,
-    element: <Auth />,
+    element: <SigninPage />,
+  },
+  {
+    path: PATH.AUTH.SIGNUP,
+    element: <SignupPage />,
   },
 ]);

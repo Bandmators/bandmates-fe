@@ -7,7 +7,7 @@
     "<THIRD_PARTY_MODULES>",
     "^@/recoil/(.*)$",
     "^@/(components|libs|hooks|utils|types|constants)/(.*)$",
-    "^@/(pages|routes|assets)/(.*)$",
+    "^@/(pages|styles|routes|assets)/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

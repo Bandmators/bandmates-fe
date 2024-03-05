@@ -2,17 +2,10 @@ import styled from '@emotion/styled';
 import { Button } from 'bmates-ui';
 import { Link } from 'react-router-dom';
 
+import Mention from '@/components/Mention';
 import { AlbumType } from '@/types/album';
 
-import StarIcon from '@/assets/icons/star.svg';
-
-import Mention from '../Mention';
-
-// interface AlbumProps {
-//   id: string;
-//   src: string;
-//   album: AlbumType;
-// }
+import { ReactComponent as StarIcon } from '@/assets/icons/star.svg';
 
 const AlbumItem = ({ id, author, src, title }: AlbumType) => {
   return (
@@ -31,8 +24,8 @@ const AlbumItem = ({ id, author, src, title }: AlbumType) => {
           at its layout.
         </AlbumDesc>
       </div>
-      <AlbumStarButton>
-        <img src={StarIcon} alt=" " /> Star
+      <AlbumStarButton variant="outline">
+        <StarIcon width="16" height="16" strokeWidth="1" /> Star
       </AlbumStarButton>
     </AlbumItemWrapper>
   );
@@ -64,5 +57,7 @@ const AlbumDesc = styled.p`
 `;
 
 const AlbumStarButton = styled(Button)`
+  display: flex;
+  gap: 0.5rem;
   margin-left: auto;
 `;

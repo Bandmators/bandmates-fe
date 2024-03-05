@@ -1,9 +1,11 @@
-import { breakpoints } from '@/styles/theme';
+import { describe, expect, it } from 'vitest';
 
 import { maxMedia, minMedia } from '@/libs/media';
 
+import { breakpoints } from '@/styles/theme';
+
 describe('Lib test', () => {
-  test('generates correct media query strings', () => {
+  it('generates correct media query strings', () => {
     const { mobile, tablet, desktop, desktopLarge } = breakpoints;
     expect(minMedia.mobile).toBe(`@media screen and (min-width: ${mobile})`);
     expect(minMedia.tablet).toBe(`@media screen and (min-width: ${tablet})`);

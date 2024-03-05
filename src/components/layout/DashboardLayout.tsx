@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
 import DashboardSidebar from '@/components/DashboardSidebar';
-import Header from '@/components/layout/Header';
+import { Header } from '@/components/layout/Header';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   return (
