@@ -16,7 +16,7 @@ const AlbumItem = ({ id, author, src, title }: AlbumType) => {
       <div>
         <Mention userId={author} />
         <AlbumTitleDivider>/</AlbumTitleDivider>
-        <Link to={`/${id}`}>
+        <Link to={`/${author}/${title}`}>
           <AlbumTitle>{title}</AlbumTitle>
         </Link>
         <AlbumDesc>

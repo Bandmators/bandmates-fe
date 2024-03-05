@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import BandmatesLogo from '@/assets/bandmate.png';
 import { ReactComponent as PlusIcon } from '@/assets/icons/plus.svg';
 
-export const Header = () => {
+export const Header = ({ children }: React.PropsWithChildren) => {
   const logout = () => {};
 
   return (
@@ -15,7 +15,7 @@ export const Header = () => {
         <Link to={PATH.ROOT}>
           <Logo src={BandmatesLogo} alt="bandmates" />
         </Link>
-        Bandmates
+        {children}
       </HeaderBarStart>
       <HeaderBarEnd>
         <Button variant="outline">Search Input</Button>
