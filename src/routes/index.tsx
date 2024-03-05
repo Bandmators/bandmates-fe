@@ -4,6 +4,7 @@ import SigninPage from '@/pages/AuthPage/SigninPage';
 import SignupPage from '@/pages/AuthPage/SignupPage';
 import Dashboard from '@/pages/DashboardPage';
 import WorkPage from '@/pages/WorkPage';
+import WorkContainer from '@/pages/WorkPage/WorkContainer';
 
 export const PATH = {
   ROOT: '/',
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
     path: PATH.WORK,
     element: <WorkPage />,
     children: [
+      {
+        path: '',
+        element: <WorkContainer />,
+      },
       {
         path: 'edit',
         element: <p>Edit</p>,
