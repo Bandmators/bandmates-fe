@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import { maxMedia } from 'bmates-ui';
 import { useEffect, useState } from 'react';
 
-import Visitor from '@/components/Visitor';
+import Conversation from '@/components/Conversation';
+import WorkBands from '@/components/Work/WorkBands';
 import WorkInfo from '@/components/Work/WorkInfo';
 import WorkMates from '@/components/Work/WorkMates';
 import { minMedia } from '@/libs/media';
@@ -30,10 +31,10 @@ const WorkContainer = () => {
         {/* Show Work Info (Album info) */}
         <WorkInfo work={work} />
 
-        {/* Visitors box */}
+        {/* Discussions box */}
         <WorkGroup>
-          <WorkSubTitle>Visitors</WorkSubTitle>
-          <Visitor />
+          <WorkSubTitle>Discussions</WorkSubTitle>
+          <Conversation />
         </WorkGroup>
       </ContainerMain>
 
@@ -41,6 +42,7 @@ const WorkContainer = () => {
         {/* Show Band Graph */}
         <WorkGroup>
           <WorkSubTitle>Band</WorkSubTitle>
+          <WorkBands bands={work.bands} />
         </WorkGroup>
 
         {/* Show Mate List */}

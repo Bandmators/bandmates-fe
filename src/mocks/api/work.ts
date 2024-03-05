@@ -12,6 +12,7 @@ const handler = [
             
             We need Vocal.
             Somebody help us.`,
+          bands: ['Guitar', 'Piano'],
         },
         mates: ['kyechan99', 'dygames'],
       },

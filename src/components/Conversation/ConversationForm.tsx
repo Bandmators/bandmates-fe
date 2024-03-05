@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 import { Button, Textarea } from 'bmates-ui';
 
-const VisitorForm = () => {
+const ConversationForm = () => {
   return (
-    <VisitForm>
+    <Form>
       <Textarea placeholder="Add to the comment" />
       <Button>Save</Button>
-    </VisitForm>
+    </Form>
   );
 };
-export default VisitorForm;
+export default ConversationForm;
 
-const VisitForm = styled.form`
+const Form = styled.form`
   display: flex;
   gap: 0.5rem;
 `;
