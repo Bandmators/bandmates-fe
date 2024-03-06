@@ -1,5 +1,7 @@
 import { Global, Theme, css } from '@emotion/react';
 
+import { cssCustomProperties } from '@/utils/css';
+
 import theme from './theme';
 
 const GlobalCustomStyle = (theme: Theme) => css`
@@ -10,6 +12,7 @@ const GlobalCustomStyle = (theme: Theme) => css`
   }
 
   :root {
+    ${cssCustomProperties(theme.colors)}
   }
 
   body {
@@ -48,6 +51,19 @@ const GlobalCustomStyle = (theme: Theme) => css`
     background: ${theme.colors.primary};
     color: white;
   }
+
+  /* &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${theme.colors.gray['300']};
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+    background-clip: padding-box;
+  } */
 `;
 
 export default function GlobalStyle() {

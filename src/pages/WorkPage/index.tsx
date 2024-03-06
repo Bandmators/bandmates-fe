@@ -13,7 +13,7 @@ const WorkPage = () => {
   const { userId, title } = useParams();
   const { pathname } = useLocation();
   const decodedPathname = decodeURIComponent(pathname);
-  const Menus = [
+  const menus = [
     { href: `/${userId}/${title}`, title: 'Overview', icon: <HomeIcon height="1rem" /> },
     { href: `/${userId}/${title}/edit`, title: 'Edit', icon: <EditIcon height="1rem" /> },
     { href: `/${userId}/${title}/history`, title: 'History', icon: <HistoryIcon height="1rem" /> },
@@ -24,7 +24,7 @@ const WorkPage = () => {
     <WorkLayout>
       <WorkNavigation>
         <NavigationMenu>
-          {Menus.map(menu => (
+          {menus.map(menu => (
             <NavigationMenuItem key={menu.title} active={decodedPathname === menu.href}>
               <Link to={menu.href}>
                 {menu.icon} {menu.title}

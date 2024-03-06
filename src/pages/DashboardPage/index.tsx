@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Button, Form, Input, InputDesc, InputGroup, Label, Textarea } from 'bmates-ui';
 import { useEffect, useState } from 'react';
 
-import Album from '@/components/Album/AlbumBox';
+import AlbumBox from '@/components/Album/AlbumBox';
 import Feed from '@/components/Feed';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { AlbumType } from '@/types/album';
@@ -35,7 +35,7 @@ const Dashboard = () => {
         <FeedTitle>Recently viewed</FeedTitle>
         <FeedContent>
           {recentlyViewAlbums.map(album => (
-            <Album key={album.id} {...album} />
+            <AlbumBox key={album.id} {...album} />
           ))}
         </FeedContent>
       </div>

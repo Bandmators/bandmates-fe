@@ -1,13 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { maxMedia } from 'bmates-ui';
 import { useEffect, useState } from 'react';
 
 import Conversation from '@/components/Conversation';
 import WorkBands from '@/components/Work/WorkBands';
 import WorkInfo from '@/components/Work/WorkInfo';
 import WorkMates from '@/components/Work/WorkMates';
-import { minMedia } from '@/libs/media';
+import { maxMedia, minMedia } from '@/libs/media';
 import { WorkType } from '@/types/work';
 
 const WorkContainer = () => {

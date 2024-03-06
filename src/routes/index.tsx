@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import SigninPage from '@/pages/AuthPage/SigninPage';
 import SignupPage from '@/pages/AuthPage/SignupPage';
 import Dashboard from '@/pages/DashboardPage';
+import ProfilePage from '@/pages/ProfilePage';
 import WorkPage from '@/pages/WorkPage';
 import WorkContainer from '@/pages/WorkPage/WorkContainer';
 
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
   },
   {
     path: PATH.USER,
-    element: <></>,
+    element: <ProfilePage />,
   },
   {
     path: '/*',

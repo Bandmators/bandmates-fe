@@ -23,4 +23,8 @@ const Container = styled.div`
 
 const DashboardContent = styled.div`
   padding: 2rem;
+  width: 100%;
+
+  container-name: dashboard-container;
+  container-type: inline-size;
 `;
