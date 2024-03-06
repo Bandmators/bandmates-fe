@@ -5,6 +5,9 @@ import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 import ProfileCard from '@/components/Profile/ProfileCard';
 import ProfileOverview from '@/components/Profile/ProfileOverview';
+import ProfileRelationship from '@/components/Profile/ProfileRelationship';
+import ProfileStars from '@/components/Profile/ProfileStars';
+import ProfileWorks from '@/components/Profile/ProfileWorks';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { maxContainer, minContainer } from '@/libs/media';
 import { UserType } from '@/types/user';
@@ -38,14 +41,14 @@ const ProfilePage = () => {
   ];
   const contents: ContentType = {
     overview: <ProfileOverview bio={profile?.bio} />,
-    works: <></>,
-    stars: <></>,
-    followers: <></>,
-    followings: <></>,
+    works: <ProfileWorks />,
+    stars: <ProfileStars />,
+    followers: <ProfileRelationship relation="followers" />,
+    followings: <ProfileRelationship relation="followings" />,
   };
 
   useEffect(() => {
-    fetch('/api/user')
+    fetch('/api/user/0')
       .then(res => res.json())
       .then(data => {
         setProfile(data.user);
@@ -88,15 +91,15 @@ const Container = styled.div`
     margin: 3rem 0rem;
     flex-direction: row;
   }
-  ${minContainer.desktop('dashboard-container')} {
-    max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktop} - 1rem)`}px;
+  ${minContainer.desktopLarge('dashboard-container')} {
+    max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktopLarge} - 1rem)`}px;
     margin: 3rem auto;
   }
   display: flex;
 `;
 const ContainerMain = styled.div`
-  flex: 0 0 14rem;
-  min-width: 14rem;
+  flex: 0 0 18rem;
+  min-width: 18rem;
   ${maxContainer.tablet('dashboard-container')} {
     margin-left: 0px;
     flex: 0 0 1;
@@ -105,7 +108,7 @@ const ContainerMain = styled.div`
 `;
 const ContainerSub = styled.div`
   margin-left: auto;
-  width: calc(100% - 15.5rem);
+  width: calc(100% - 19.5rem);
   ${maxContainer.tablet('dashboard-container')} {
     width: 100%;
   }

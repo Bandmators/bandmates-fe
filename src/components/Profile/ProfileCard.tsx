@@ -27,15 +27,6 @@ const ProfileCard = ({ profile }: { profile: UserType }) => {
       <ProfileImage src={profile.profile} />
       <ProfileName>{profile.nickname}</ProfileName>
       <ProfileId>@{profile.id}</ProfileId>
-      <ProfileRelations>
-        <ProfileRelationItem to={`/${profile.id}/?tab=followers`}>
-          <span className="stress">24K</span> followers
-        </ProfileRelationItem>
-        ·
-        <ProfileRelationItem to={`/${profile.id}/?tab=followings`}>
-          <span className="stress">1K</span> followings
-        </ProfileRelationItem>
-      </ProfileRelations>
       <ProfileDetailList>
         {infoTypeList.map(info => {
           if (Object.keys(profile).includes(info))
@@ -47,13 +38,26 @@ const ProfileCard = ({ profile }: { profile: UserType }) => {
             );
         })}
       </ProfileDetailList>
-      <FollowButton />
+      <ProfileRelations>
+        <ProfileRelationItem to={`/${profile.id}/?tab=followers`}>
+          <span className="stress">24K</span> followers
+        </ProfileRelationItem>
+        ·
+        <ProfileRelationItem to={`/${profile.id}/?tab=followings`}>
+          <span className="stress">1K</span> followings
+        </ProfileRelationItem>
+      </ProfileRelations>
+      <ProfileTake>
+        {/* <SponsorButton /> */}
+        <FollowButton />
+      </ProfileTake>
     </Card>
   );
 };
 export default ProfileCard;
 
 const ProfileImage = styled.img`
+  width: 100%;
   border-radius: 0.5rem;
 `;
 const ProfileName = styled.h1`
@@ -69,6 +73,8 @@ const ProfileRelations = styled.div`
   margin: 1.5rem 0rem;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
 `;
 const ProfileRelationItem = styled(Link)`
   font-size: 0.875rem;
@@ -81,6 +87,9 @@ const ProfileRelationItem = styled(Link)`
     opacity: 1;
     margin-right: 0.25rem;
   }
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const ProfileDetailList = styled.ul`
@@ -89,6 +98,7 @@ const ProfileDetailList = styled.ul`
   opacity: 0.7;
 `;
 const ProfileDetailItem = styled.li`
+  font-size: 0.875rem;
   display: flex;
   margin: 0.75rem 0rem;
   align-items: center;
@@ -97,5 +107,15 @@ const ProfileDetailItem = styled.li`
     stroke-width: 1;
     height: 1rem;
     margin-right: 0.5rem;
+  }
+`;
+
+const ProfileTake = styled.div`
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  justify-content: space-between;
+  button {
+    flex: 1 0 auto;
   }
 `;

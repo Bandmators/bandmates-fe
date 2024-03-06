@@ -29,5 +29,4 @@ export default FollowButton;
 const UserFollowButton = styled(Button)`
   display: flex;
   gap: 0.5rem;
-  width: 100%;
 `;

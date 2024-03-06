@@ -9,15 +9,17 @@ import StarButton from '../common/Button/StarButton';
 const AlbumItem = ({ id, author, src, title }: AlbumType) => {
   return (
     <AlbumItemWrapper>
-      <Link to={`/${id}`}>
+      <AlbumImageLink to={`/${id}`}>
         <AlbumImage src={src} alt={id} />
-      </Link>
+      </AlbumImageLink>
       <div>
-        <Mention userId={author} />
-        <AlbumTitleDivider>/</AlbumTitleDivider>
-        <Link to={`/${author}/${title}`}>
-          <AlbumTitle>{title}</AlbumTitle>
-        </Link>
+        <div>
+          <Mention userId={author} />
+          <AlbumTitleDivider>/</AlbumTitleDivider>
+          <Link to={`/${author}/${title}`}>
+            <AlbumTitle>{title}</AlbumTitle>
+          </Link>
+        </div>
         <AlbumDesc>
           It is a long established fact that a reader will be distracted by the readable content of a page when looking
           at its layout.
@@ -32,13 +34,15 @@ export default AlbumItem;
 const AlbumItemWrapper = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
 `;
-
+const AlbumImageLink = styled(Link)`
+  display: flex;
+`;
 const AlbumImage = styled.img`
   border-radius: 0.5rem;
   width: 5rem;
   height: 5rem;
-  margin-right: 1rem;
 `;
 const AlbumTitleDivider = styled.span`
   margin: 0px 0.25rem;
@@ -46,9 +50,18 @@ const AlbumTitleDivider = styled.span`
 `;
 const AlbumTitle = styled.span`
   font-weight: 600;
-  margin: 0px 0px 0.5rem;
+  margin: 0px;
 `;
 const AlbumDesc = styled.p`
-  opacity: 0.7;
   margin: 0.5rem 0px 0px;
+  width: 70%;
+  line-height: 1;
+  display: -webkit-box;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  opacity: 0.7;
 `;

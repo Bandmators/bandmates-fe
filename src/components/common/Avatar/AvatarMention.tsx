@@ -2,14 +2,16 @@ import styled from '@emotion/styled';
 import { Avatar } from 'bmates-ui';
 
 import Mention from '@/components/Mention';
+import { SizeType } from '@/types/size';
 
 interface AvatarMentionProps {
   userId: string;
+  size?: SizeType;
 }
-const AvatarMention = ({ userId }: AvatarMentionProps) => {
+const AvatarMention = ({ size, userId }: AvatarMentionProps) => {
   return (
     <AvatarMentionWrapper>
-      <Avatar src="" alt="" />
+      <Avatar src="" alt="" size={size} />
       <div>
         <Mention userId={userId} />
       </div>
