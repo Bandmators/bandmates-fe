@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Card } from 'bmates-ui';
 import { Link } from 'react-router-dom';
 
+import { maxContainer } from '@/libs/media';
 import { UserType } from '@/types/user';
 
 import { ReactComponent as MailIcon } from '@/assets/icons/mail.svg';
@@ -23,17 +24,21 @@ const infoIcon: InfoIconType = {
 
 const ProfileCard = ({ profile }: { profile: UserType }) => {
   return (
-    <Card>
-      <ProfileImage src={profile.profile} />
-      <ProfileName>{profile.nickname}</ProfileName>
-      <ProfileId>@{profile.id}</ProfileId>
+    <ProfileCardStyled>
+      <ProfileCommon>
+        <ProfileImage src={profile.profile} />
+        <div>
+          <ProfileName>{profile.nickname}</ProfileName>
+          <ProfileId>@{profile.id}</ProfileId>
+        </div>
+      </ProfileCommon>
       <ProfileDetailList>
         {infoTypeList.map(info => {
           if (Object.keys(profile).includes(info))
             return (
               <ProfileDetailItem key={info}>
                 {infoIcon[info]}
-                {profile[info]}
+                <span>{profile[info]}</span>
               </ProfileDetailItem>
             );
         })}
@@ -51,18 +56,47 @@ const ProfileCard = ({ profile }: { profile: UserType }) => {
         {/* <SponsorButton /> */}
         <FollowButton />
       </ProfileTake>
-    </Card>
+    </ProfileCardStyled>
   );
 };
 export default ProfileCard;
 
+const ProfileCardStyled = styled(Card)`
+  border: 1px solid ${({ theme }) => theme.colors.gray['300']};
+  box-shadow: none;
+  padding: 1.5rem;
+  /* box-shadow: 0 0 2px ${({ theme }) => theme.colors.gray['600']}; */
+  ${maxContainer.tablet('dashboard-container')} {
+    padding: 1rem;
+    border: none;
+  }
+`;
+
+const ProfileCommon = styled.div`
+  ${maxContainer.mobile('dashboard-container')} {
+    display: flex;
+    align-items: center;
+  }
+  ${maxContainer.tablet('dashboard-container')} {
+    display: flex;
+    align-items: center;
+  }
+`;
 const ProfileImage = styled.img`
   width: 100%;
+  max-width: 100%;
   border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  ${maxContainer.tablet('dashboard-container')} {
+    max-width: 100px;
+    display: block;
+    margin-right: 1rem;
+    margin-bottom: 0rem;
+  }
 `;
 const ProfileName = styled.h1`
   font-size: 1.5rem;
-  margin: 1rem 0px 0px;
+  margin: 0px;
 `;
 const ProfileId = styled.p`
   margin: 0px;
@@ -99,14 +133,18 @@ const ProfileDetailList = styled.ul`
 `;
 const ProfileDetailItem = styled.li`
   font-size: 0.875rem;
-  display: flex;
-  margin: 0.75rem 0rem;
-  align-items: center;
+  margin: 1rem 0rem;
+  padding-left: 1.75rem;
   list-style: none;
   svg {
+    float: left;
     stroke-width: 1;
     height: 1rem;
-    margin-right: 0.5rem;
+    margin-left: -2rem;
+    float: left;
+  }
+  span {
+    word-break: break-word;
   }
 `;
 

@@ -1,30 +1,57 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
 import DashboardSidebar from '@/components/DashboardSidebar';
 import { Header } from '@/components/layout/Header';
+import { minContainer } from '@/libs/media';
+import { useSidebarStore } from '@/stores/sidebar';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
+  const isOpen = useSidebarStore(state => state.isOpen);
+
   return (
     <>
       <Header />
-      <Container>
-        <DashboardSidebar />
+      <DashboardContainer>
+        {isOpen && <DashboardSidebar />}
         <DashboardContent>{children}</DashboardContent>
-      </Container>
+      </DashboardContainer>
     </>
   );
 };
 export default DashboardLayout;
 
-const Container = styled.div`
+const DashboardContainer = styled.div`
   display: flex;
 `;
 
 const DashboardContent = styled.div`
-  padding: 2rem;
+  /* padding: 2rem; */
   width: 100%;
 
   container-name: dashboard-container;
   container-type: inline-size;
 `;
+
+const Container = styled.div<{ isFill?: boolean }>`
+  margin: 0rem;
+  padding: ${({ isFill }) => (isFill ? `0rem` : `1rem`)};
+  display: flex;
+  flex-direction: column;
+
+  ${minContainer.tablet('dashboard-container')} {
+    padding: 1rem;
+    margin: 3rem 0rem;
+    flex-direction: row;
+  }
+  ${minContainer.desktop('dashboard-container')} {
+    max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktop} - 1rem)`};
+    margin: 3rem auto;
+  }
+  ${minContainer.desktopLarge('dashboard-container')} {
+    max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktopLarge} - 1rem)`};
+  }
+`;
+
+DashboardLayout.Container = Container;

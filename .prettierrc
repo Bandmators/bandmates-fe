@@ -6,7 +6,7 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@/recoil/(.*)$",
-    "^@/(components|libs|hooks|utils|types|constants)/(.*)$",
+    "^@/(components|libs|hooks|utils|types|constants|stores)/(.*)$",
     "^@/(pages|styles|routes|assets)/(.*)$",
     "^[./]"
   ],

@@ -6,12 +6,15 @@ import { Link } from 'react-router-dom';
 import BandmatesLogo from '@/assets/bandmate.png';
 import { ReactComponent as PlusIcon } from '@/assets/icons/plus.svg';
 
+import SidebarToggleButton from '../common/Button/SidebarToggleButton';
+
 export const Header = ({ children }: React.PropsWithChildren) => {
   const logout = () => {};
 
   return (
     <HeaderStyled>
       <HeaderBarStart>
+        <SidebarToggleButton />
         <Link to={PATH.ROOT}>
           <Logo src={BandmatesLogo} alt="bandmates" />
         </Link>
@@ -20,7 +23,7 @@ export const Header = ({ children }: React.PropsWithChildren) => {
       <HeaderBarEnd>
         <Button variant="outline">Search Input</Button>
         <Button variant="outline" size="icon">
-          <PlusIcon />
+          <PlusIcon strokeWidth={1} width="16" height="16" />
         </Button>
         <Dropdown align="end">
           <DropdownToggle

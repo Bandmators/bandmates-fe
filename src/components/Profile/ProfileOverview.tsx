@@ -42,7 +42,7 @@ const ProfileOverview = ({ bio }: ProfileOverviewProps) => {
 export default ProfileOverview;
 
 const ProfileIntroduce = styled.div`
-  margin: 3rem 0rem;
+  margin: 2rem 0rem 0rem;
   font-size: 1.125rem;
   background-color: ${({ theme }) => theme.colors.gray['200']};
   width: 100%;

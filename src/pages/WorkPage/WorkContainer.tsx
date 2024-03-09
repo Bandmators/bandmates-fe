@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
@@ -6,7 +5,7 @@ import Conversation from '@/components/Conversation';
 import WorkBands from '@/components/Work/WorkBands';
 import WorkInfo from '@/components/Work/WorkInfo';
 import WorkMates from '@/components/Work/WorkMates';
-import { maxMedia, minMedia } from '@/libs/media';
+import { minContainer } from '@/libs/media';
 import { WorkType } from '@/types/work';
 
 const WorkContainer = () => {
@@ -25,7 +24,7 @@ const WorkContainer = () => {
   if (!work) return <></>;
 
   return (
-    <Container>
+    <>
       <ContainerMain>
         {/* Show Work Info (Album info) */}
         <WorkInfo work={work} />
@@ -50,40 +49,25 @@ const WorkContainer = () => {
           <WorkMates mates={mates} />
         </WorkGroup>
       </ContainerSub>
-    </Container>
+    </>
   );
 };
 export default WorkContainer;
 
-const Container = styled.div`
-  ${minMedia.mobile} {
-    margin: 1rem;
-    flex-direction: column;
-  }
-  ${minMedia.tablet} {
-    margin: 3rem 2rem;
-    flex-direction: row;
-  }
-  ${minMedia.desktop} {
-    max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktop} - 2rem)`}px;
-    margin: 3rem auto;
-  }
-  display: flex;
-`;
 const ContainerMain = styled.div`
-  width: calc(100% - 15.5rem);
-  ${maxMedia.tablet} {
-    width: 100%;
+  width: 100%;
+  ${minContainer.tablet('dashboard-container')} {
+    width: calc(100% - 15.5rem);
   }
 `;
 const ContainerSub = styled.div`
-  margin-left: auto;
-  flex: 0 0 14rem;
-  min-width: 14rem;
-  ${maxMedia.tablet} {
-    margin-left: 0px;
-    flex: 0 0 1;
-    min-width: 100%;
+  margin-left: 0px;
+  min-width: 100%;
+  flex: 0 0 auto;
+  ${minContainer.tablet('dashboard-container')} {
+    margin-left: auto;
+    min-width: 14rem;
+    flex: 0 0 14rem;
   }
 `;
 

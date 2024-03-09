@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
-import WorkLayout from '@/components/layout/WorkLayout';
+import DashboardLayout from '@/components/layout/DashboardLayout';
 
 import { ReactComponent as HistoryIcon } from '@/assets/icons/clock.svg';
 import { ReactComponent as EditIcon } from '@/assets/icons/edit.svg';
@@ -21,7 +21,7 @@ const WorkPage = () => {
   ];
 
   return (
-    <WorkLayout>
+    <DashboardLayout>
       <WorkNavigation>
         <NavigationMenu>
           {menus.map(menu => (
@@ -33,8 +33,10 @@ const WorkPage = () => {
           ))}
         </NavigationMenu>
       </WorkNavigation>
-      <Outlet />
-    </WorkLayout>
+      <DashboardLayout.Container>
+        <Outlet />
+      </DashboardLayout.Container>
+    </DashboardLayout>
   );
 };
 export default WorkPage;

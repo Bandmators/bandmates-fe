@@ -59,7 +59,7 @@ const ProfilePage = () => {
 
   return (
     <DashboardLayout>
-      <Container>
+      <DashboardLayout.Container isFill>
         <ContainerMain>
           <ProfileCard profile={profile} />
         </ContainerMain>
@@ -76,41 +76,28 @@ const ProfilePage = () => {
               ))}
             </NavigationMenu>
           </ProfileNavigation>
-          {contents[tab]}
+          <ProfileContent>{contents[tab]}</ProfileContent>
         </ContainerSub>
-      </Container>
+      </DashboardLayout.Container>
     </DashboardLayout>
   );
 };
 export default ProfilePage;
 
-const Container = styled.div`
-  flex-direction: column;
-  margin: 1rem;
-  ${minContainer.tablet('dashboard-container')} {
-    margin: 3rem 0rem;
-    flex-direction: row;
-  }
-  ${minContainer.desktopLarge('dashboard-container')} {
-    max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktopLarge} - 1rem)`}px;
-    margin: 3rem auto;
-  }
-  display: flex;
-`;
 const ContainerMain = styled.div`
-  flex: 0 0 18rem;
-  min-width: 18rem;
-  ${maxContainer.tablet('dashboard-container')} {
-    margin-left: 0px;
-    flex: 0 0 1;
-    min-width: 100%;
+  margin-left: 0px;
+  flex: 0 0 auto;
+  min-width: 100%;
+  ${minContainer.tablet('dashboard-container')} {
+    flex: 0 0 18rem;
+    min-width: 18rem;
   }
 `;
 const ContainerSub = styled.div`
-  margin-left: auto;
-  width: calc(100% - 19.5rem);
-  ${maxContainer.tablet('dashboard-container')} {
-    width: 100%;
+  width: 100%;
+  ${minContainer.tablet('dashboard-container')} {
+    width: calc(100% - 20rem);
+    margin-left: auto;
   }
 `;
 
@@ -151,4 +138,9 @@ const NavigationMenuItem = styled.li<{ active?: boolean }>`
         stroke-width: 2;
       }
     `}
+`;
+const ProfileContent = styled.div`
+  ${maxContainer.tablet('dashboard-container')} {
+    margin: 1rem;
+  }
 `;

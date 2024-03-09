@@ -21,6 +21,7 @@ export default Instrument;
 const InstrumentTag = styled.span<{ code: string }>`
   display: flex;
   align-items: center;
+  font-size: 1.125rem;
   &::before {
     width: 4px;
     height: 4px;
