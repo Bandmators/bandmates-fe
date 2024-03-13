@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 
 import AlbumBox from '@/components/Album/AlbumBox';
 import Feed from '@/components/Feed';
-import DashboardLayout from '@/components/layout/DashboardLayout';
 import { AlbumType } from '@/types/album';
 import { FeedType } from '@/types/feed';
+
+import DashboardLayout from '@/pages/Layout/DashboardLayout';
 
 const Dashboard = () => {
   const [feeds, setFeeds] = useState<FeedType[]>([]);

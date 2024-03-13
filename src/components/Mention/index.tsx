@@ -1,9 +1,10 @@
-import { PATH } from '@/routes';
 import styled from '@emotion/styled';
 import { Avatar, HoverCard, HoverCardContent, HoverCardToggle } from 'bmates-ui';
 import { Link } from 'react-router-dom';
 
 import FollowButton from '@/components/common/Button/FollowButton';
+
+import { PATH } from '@/routes/path';
 
 interface MentionProps {
   userId: string;

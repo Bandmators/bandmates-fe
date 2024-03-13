@@ -7,22 +7,7 @@ import ProfilePage from '@/pages/ProfilePage';
 import WorkPage from '@/pages/WorkPage';
 import WorkContainer from '@/pages/WorkPage/WorkContainer';
 
-export const PATH = {
-  ROOT: '/',
-
-  AUTH: {
-    SIGNIN: '/auth/signin',
-    SIGNUP: '/auth/signup',
-  },
-
-  USER: '/:userId',
-
-  WORK: '/:userId/:title',
-  _WORK: {
-    EDIT: 'edit',
-    SETTING: 'setting',
-  },
-};
+import { PATH } from './path';
 
 export const router = createBrowserRouter([
   {

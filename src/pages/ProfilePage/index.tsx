@@ -8,13 +8,13 @@ import ProfileOverview from '@/components/Profile/ProfileOverview';
 import ProfileRelationship from '@/components/Profile/ProfileRelationship';
 import ProfileStars from '@/components/Profile/ProfileStars';
 import ProfileWorks from '@/components/Profile/ProfileWorks';
-import DashboardLayout from '@/components/layout/DashboardLayout';
 import { maxContainer, minContainer } from '@/libs/media';
 import { UserType } from '@/types/user';
 
 import { ReactComponent as EditIcon } from '@/assets/icons/edit.svg';
 import { ReactComponent as HomeIcon } from '@/assets/icons/home.svg';
 import { ReactComponent as StarIcon } from '@/assets/icons/star.svg';
+import DashboardLayout from '@/pages/Layout/DashboardLayout';
 
 type TabType = 'overview' | 'works' | 'stars' | 'followers' | 'followings';
 type MenuType = {

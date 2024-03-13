@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Avatar, Card, CardBody, CardDesc, CardHead } from 'bmates-ui';
+import { Avatar, CardBody, CardDesc, CardHead } from 'bmates-ui';
 
 import { FeedType } from '@/types/feed';
 
@@ -38,6 +38,10 @@ const FeedHead = styled.div`
 
 const FeedDesc = styled.span``;
 
-const FeedCard = styled(Card)`
+const FeedCard = styled.article`
   margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.bg};
+  box-shadow: 0 0 4px ${({ theme }) => theme.colors.gray['300']};
 `;

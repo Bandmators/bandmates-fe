@@ -1,9 +1,10 @@
-import { PATH } from '@/routes';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import SignupForm from '@/components/Form/SignupForm';
-import MobileLayout from '@/components/layout/MobileLayout';
+
+import MobileLayout from '@/pages/Layout/MobileLayout';
+import { PATH } from '@/routes/path';
 
 const SignupPage = () => {
   return (

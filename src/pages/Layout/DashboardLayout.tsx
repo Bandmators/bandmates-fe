@@ -3,9 +3,10 @@ import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
 import DashboardSidebar from '@/components/DashboardSidebar';
-import { Header } from '@/components/layout/Header';
 import { minContainer } from '@/libs/media';
 import { useSidebarStore } from '@/stores/sidebar';
+
+import { Header } from '@/pages/Layout/Header';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   const isOpen = useSidebarStore(state => state.isOpen);
@@ -26,7 +27,7 @@ const DashboardContainer = styled.div`
   display: flex;
 `;
 
-const DashboardContent = styled.div`
+const DashboardContent = styled.main`
   /* padding: 2rem; */
   width: 100%;
 

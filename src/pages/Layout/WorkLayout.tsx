@@ -3,7 +3,8 @@ import { PropsWithChildren } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import Mention from '@/components/Mention';
-import { Header } from '@/components/layout/Header';
+
+import { Header } from '@/pages/Layout/Header';
 
 const WorkLayout = ({ children }: PropsWithChildren) => {
   const { userId, title } = useParams();

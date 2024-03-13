@@ -1,12 +1,12 @@
-import { PATH } from '@/routes';
 import styled from '@emotion/styled';
 import { Avatar, Button, Dropdown, DropdownContent, DropdownDivider, DropdownItem, DropdownToggle } from 'bmates-ui';
 import { Link } from 'react-router-dom';
 
 import BandmatesLogo from '@/assets/bandmate.png';
 import { ReactComponent as PlusIcon } from '@/assets/icons/plus.svg';
+import { PATH } from '@/routes/path';
 
-import SidebarToggleButton from '../common/Button/SidebarToggleButton';
+import SidebarToggleButton from '../../components/common/Button/SidebarToggleButton';
 
 export const Header = ({ children }: React.PropsWithChildren) => {
   const logout = () => {};
@@ -70,7 +70,7 @@ export const MobileHeader = () => {
   );
 };
 
-const HeaderStyled = styled.div`
+const HeaderStyled = styled.header`
   position: sticky;
   top: 0;
   z-index: 50;

@@ -2,12 +2,11 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
-import DashboardLayout from '@/components/layout/DashboardLayout';
-
 import { ReactComponent as HistoryIcon } from '@/assets/icons/clock.svg';
 import { ReactComponent as EditIcon } from '@/assets/icons/edit.svg';
 import { ReactComponent as HomeIcon } from '@/assets/icons/home.svg';
 import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
+import DashboardLayout from '@/pages/Layout/DashboardLayout';
 
 const WorkPage = () => {
   const { userId, title } = useParams();
