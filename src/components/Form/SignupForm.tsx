@@ -1,62 +1,75 @@
-import styled from '@emotion/styled';
 import { Button, Input, InputGroup, Label } from 'bmates-ui';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-// import { useSearchParams } from 'react-router-dom';
 import { Form } from '@/components/Form/Form';
+import { VALIDATION } from '@/constants/validation';
 
-// import { PATH } from '@/routes/index';
+import InputErrorMessage from './InputErrorMessage';
+import { SingupInputs } from './type';
 
 const SignupForm = () => {
-  //   const [searchParams] = useSearchParams();
-  //   const navigate = useNavigate();
-
-  //   const redirect_to: string = decodeURIComponent(searchParams.get('redirect_to') || PATH.ROOT);
-
-  const handleSubmit = () => {};
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SingupInputs>();
+  const onSubmit: SubmitHandler<SingupInputs> = data => console.log(data);
 
   return (
-    <FormCard>
-      <Form onSubmit={handleSubmit}>
-        <InputGroup>
-          <Label htmlFor="email">E-mail</Label>
-          <Input id="email" type="email" placeholder="bmates@bandmates.com" />
-          {/* <InputDesc>You can @mention other users to link to them.</InputDesc> */}
-        </InputGroup>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <InputGroup>
+        <Label htmlFor="email">E-mail</Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="bmates@bandmates.com"
+          {...register('email', {
+            required: VALIDATION.EMAIL.REQUIRED,
+            pattern: VALIDATION.EMAIL.PATTERN,
+          })}
+        />
+        <InputErrorMessage errors={errors} name="email" />
+      </InputGroup>
 
-        <InputGroup>
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" placeholder="********" />
-          {/* <InputDesc>You can @mention other users to link to them.</InputDesc> */}
-        </InputGroup>
+      <InputGroup>
+        <Label htmlFor="password">Password</Label>
+        <Input
+          id="password"
+          type="password"
+          placeholder="********"
+          {...register('password', {
+            required: VALIDATION.PASSWORD.REQUIRED,
+            minLength: VALIDATION.PASSWORD.MIN_LENGTH,
+            maxLength: VALIDATION.PASSWORD.MAX_LENGTH,
+          })}
+        />
+        <InputErrorMessage errors={errors} name="password" />
+      </InputGroup>
 
-        <InputGroup>
-          <Label htmlFor="nickname">Nickname</Label>
-          <Input id="nickname" placeholder="(2 ~ 20 character)" />
-          {/* <InputDesc>You can @mention other users to link to them.</InputDesc> */}
-        </InputGroup>
+      <InputGroup>
+        <Label htmlFor="nickname">Nickname</Label>
+        <Input
+          id="nickname"
+          placeholder="(4 ~ 20 character)"
+          {...register('nickname', {
+            required: VALIDATION.NICKNAME.REQUIRED,
+            minLength: VALIDATION.NICKNAME.MIN_LENGTH,
+            maxLength: VALIDATION.NICKNAME.MAX_LENGTH,
+          })}
+        />
+        <InputErrorMessage errors={errors} name="nickname" />
+      </InputGroup>
 
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          style={{ width: '100%' }}
-          //   disabled={isLoading || values.email === '' || values.password === ''}
-        >
-          DONE
-        </Button>
-      </Form>
-    </FormCard>
+      <Button
+        type="submit"
+        variant="primary"
+        size="lg"
+        style={{ width: '100%' }}
+        //   disabled={isLoading || values.email === '' || values.password === ''}
+      >
+        DONE
+      </Button>
+    </Form>
   );
 };
 export default SignupForm;
-
-const FormCard = styled.div`
-  margin-top: 4rem;
-  input {
-    line-height: 2rem;
-  }
-  button {
-    line-height: 2rem;
-    padding: 0.375rem 0.75rem;
-  }
-`;

@@ -27,6 +27,15 @@ const FormStyled = styled.form`
   flex-direction: column;
   gap: 2rem;
   align-items: stretch;
+
+  margin-top: 4rem;
+  input {
+    line-height: 2rem;
+  }
+  button {
+    line-height: 2rem;
+    padding: 0.375rem 0.75rem;
+  }
 `;
 
 export const ErrorMsg = styled.p`

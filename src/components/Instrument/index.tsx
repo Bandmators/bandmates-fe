@@ -1,6 +1,6 @@
-import { instrument } from '@/constant/instrument';
 import styled from '@emotion/styled';
 
+import { instrument } from '@/constants/instrument';
 import { InstrumentType } from '@/types/instrument';
 
 interface InstrumentProps {

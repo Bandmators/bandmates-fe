@@ -13,7 +13,7 @@ const SignupPage = () => {
       <SignupForm />
       <Divider />
       <Group>
-        Already have an account? <Link to={PATH.AUTH.SIGNUP}>Sign In</Link>
+        Already have an account? <Link to={PATH.AUTH.SIGNIN}>Sign In</Link>
       </Group>
     </MobileLayout>
   );
