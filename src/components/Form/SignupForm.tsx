@@ -50,7 +50,7 @@ const SignupForm = () => {
         <Label htmlFor="nickname">Nickname</Label>
         <Input
           id="nickname"
-          placeholder="(4 ~ 20 character)"
+          placeholder={`(${VALIDATION.NICKNAME.MIN_LENGTH.value} ~ ${VALIDATION.NICKNAME.MAX_LENGTH.value} character)`}
           {...register('nickname', {
             required: VALIDATION.NICKNAME.REQUIRED,
             minLength: VALIDATION.NICKNAME.MIN_LENGTH,

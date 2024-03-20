@@ -16,6 +16,7 @@ const WorkContainer = () => {
     fetch('/api/work')
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         setWork(data.work);
         setMates(data.mates);
       });

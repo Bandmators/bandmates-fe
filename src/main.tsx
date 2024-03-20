@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 
-import StyledProvider from '@/components/provider/StyledProvider.tsx';
+import QueryProvider from '@/components/Provider/QueryProvider.tsx';
+import StyledProvider from '@/components/Provider/StyledProvider.tsx';
 
 import { router } from '@/routes/index.tsx';
 
@@ -20,7 +21,9 @@ enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <StyledProvider>
-        <RouterProvider router={router} />
+        <QueryProvider>
+          <RouterProvider router={router} />
+        </QueryProvider>
       </StyledProvider>
     </React.StrictMode>,
   );

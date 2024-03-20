@@ -10,7 +10,7 @@ const WorkMates = ({ mates }: WorkMatesProps) => {
   return (
     <WorkMateList>
       {mates.map(mate => (
-        <WorkMateListItem>
+        <WorkMateListItem key={mate}>
           <AvatarMention userId={mate} />
         </WorkMateListItem>
       ))}

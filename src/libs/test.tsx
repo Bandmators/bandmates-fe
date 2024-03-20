@@ -3,7 +3,7 @@ import { RenderOptions, render } from '@testing-library/react';
 import { ReactElement } from 'react';
 import { MemoryRouter, Routes } from 'react-router-dom';
 
-import StyledProvider from '@/components/provider/StyledProvider';
+import StyledProvider from '@/components/Provider/StyledProvider';
 
 // import {
 //     QueryClient,
