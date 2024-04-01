@@ -5,6 +5,7 @@ import SignupPage from '@/pages/AuthPage/SignupPage';
 import Dashboard from '@/pages/DashboardPage';
 import ProfilePage from '@/pages/ProfilePage';
 import SettingsPage from '@/pages/SettingsPage';
+import SettingAccountContainer from '@/pages/SettingsPage/SettingAccountContainer';
 import SettingNotificationContainer from '@/pages/SettingsPage/SettingNotificationContainer';
 import SettingPasswordContainer from '@/pages/SettingsPage/SettingPasswordContainer';
 import WorkPage from '@/pages/WorkPage';
@@ -65,7 +66,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH._SETTINGS.ACCOUNT,
-        element: <p>account</p>,
+        element: <SettingAccountContainer />,
       },
     ],
   },

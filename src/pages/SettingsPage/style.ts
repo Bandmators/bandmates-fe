@@ -20,3 +20,12 @@ export const SwitchGroup = styled.div`
 export const SwitchLabel = styled.label`
   margin-left: 1rem;
 `;
+
+export const WarningMessage = styled.p`
+  padding: 1rem;
+  margin: 2rem 0rem;
+  color: var(--danger);
+  border-left: 2px solid black;
+  background-color: var(--gray-100);
+  white-space: pre-line;
+`;
