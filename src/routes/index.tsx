@@ -4,6 +4,7 @@ import SigninPage from '@/pages/AuthPage/SigninPage';
 import SignupPage from '@/pages/AuthPage/SignupPage';
 import Dashboard from '@/pages/DashboardPage';
 import ProfilePage from '@/pages/ProfilePage';
+import SettingsPage from '@/pages/SettingsPage';
 import WorkPage from '@/pages/WorkPage';
 import WorkContainer from '@/pages/WorkPage/WorkContainer';
 
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
   {
     path: PATH.USER,
     element: <ProfilePage />,
+  },
+  {
+    path: PATH.SETTING,
+    element: <SettingsPage />,
   },
   {
     path: '/*',

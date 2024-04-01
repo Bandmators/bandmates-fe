@@ -13,4 +13,6 @@ export const PATH = {
     EDIT: 'edit',
     SETTING: 'setting',
   },
+
+  SETTING: '/settings',
 };
