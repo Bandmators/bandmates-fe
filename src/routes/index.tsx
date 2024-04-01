@@ -5,6 +5,7 @@ import SignupPage from '@/pages/AuthPage/SignupPage';
 import Dashboard from '@/pages/DashboardPage';
 import ProfilePage from '@/pages/ProfilePage';
 import SettingsPage from '@/pages/SettingsPage';
+import SettingNotificationContainer from '@/pages/SettingsPage/SettingNotificationContainer';
 import SettingPasswordContainer from '@/pages/SettingsPage/SettingPasswordContainer';
 import WorkPage from '@/pages/WorkPage';
 import WorkContainer from '@/pages/WorkPage/WorkContainer';
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH._SETTINGS.NOTIFICATION,
-        element: <p>notification</p>,
+        element: <SettingNotificationContainer />,
       },
       {
         path: PATH._SETTINGS.PASSWORD,

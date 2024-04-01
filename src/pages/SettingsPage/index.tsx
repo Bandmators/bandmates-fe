@@ -57,7 +57,6 @@ const SettingsPage = () => {
     <DashboardLayout>
       <DashboardLayout.Container isFill>
         <ContainerMain>
-          <h2>Settings</h2>
           <SettingMenuList>
             {filterMenus.map(m => (
               <SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
@@ -115,7 +114,7 @@ const SettingMenuList = styled.ul`
 `;
 const SettingMenu = styled.li<{ active?: boolean }>`
   padding-left: 1rem;
-  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   font-weight: 300;
   border-left: 2px solid transparent;
   ${props =>

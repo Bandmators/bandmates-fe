@@ -1,19 +1,14 @@
-import styled from '@emotion/styled';
-
 import SettingPasswordForm from '@/components/Form/SettingPasswordForm';
+
+import * as S from './style';
 
 const SettingPasswordContainer = () => {
   return (
     <>
-      <H1>Change Password</H1>
+      <S.SubHead>Change Password</S.SubHead>
       <SettingPasswordForm />
     </>
   );
 };
 
 export default SettingPasswordContainer;
-
-const H1 = styled.h1`
-  margin-top: 0px;
-  margin-bottom: 2rem;
-`;
