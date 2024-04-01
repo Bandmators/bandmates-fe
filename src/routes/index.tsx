@@ -5,6 +5,7 @@ import SignupPage from '@/pages/AuthPage/SignupPage';
 import Dashboard from '@/pages/DashboardPage';
 import ProfilePage from '@/pages/ProfilePage';
 import SettingsPage from '@/pages/SettingsPage';
+import SettingPasswordContainer from '@/pages/SettingsPage/SettingPasswordContainer';
 import WorkPage from '@/pages/WorkPage';
 import WorkContainer from '@/pages/WorkPage/WorkContainer';
 
@@ -32,11 +33,11 @@ export const router = createBrowserRouter([
         element: <WorkContainer />,
       },
       {
-        path: 'edit',
+        path: PATH._WORK.EDIT,
         element: <p>Edit</p>,
       },
       {
-        path: 'setting',
+        path: PATH._WORK.SETTING,
         element: <p>dsf</p>,
       },
     ],
@@ -46,8 +47,26 @@ export const router = createBrowserRouter([
     element: <ProfilePage />,
   },
   {
-    path: PATH.SETTING,
+    path: PATH.SETTINGS,
     element: <SettingsPage />,
+    children: [
+      {
+        path: PATH._SETTINGS.PROFILE,
+        element: <p>profile</p>,
+      },
+      {
+        path: PATH._SETTINGS.NOTIFICATION,
+        element: <p>notification</p>,
+      },
+      {
+        path: PATH._SETTINGS.PASSWORD,
+        element: <SettingPasswordContainer />,
+      },
+      {
+        path: PATH._SETTINGS.ACCOUNT,
+        element: <p>account</p>,
+      },
+    ],
   },
   {
     path: '/*',

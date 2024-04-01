@@ -27,8 +27,6 @@ const FormStyled = styled.form`
   flex-direction: column;
   gap: 2rem;
   align-items: stretch;
-
-  margin-top: 4rem;
   input {
     line-height: 2rem;
   }

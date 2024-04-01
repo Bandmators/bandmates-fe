@@ -14,5 +14,11 @@ export const PATH = {
     SETTING: 'setting',
   },
 
-  SETTING: '/settings',
+  SETTINGS: '/settings',
+  _SETTINGS: {
+    PROFILE: '',
+    NOTIFICATION: 'notification',
+    PASSWORD: 'password',
+    ACCOUNT: 'account',
+  },
 };

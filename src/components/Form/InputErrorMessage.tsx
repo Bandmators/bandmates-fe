@@ -3,11 +3,11 @@ import { ErrorMessage } from '@hookform/error-message';
 import { InputDesc } from 'bmates-ui';
 import { FieldErrors } from 'react-hook-form';
 
-import { SinginInputs, SingupInputs } from './type';
+import { PasswordInputs, SinginInputs, SingupInputs } from './type';
 
 interface InputErrorMessageProps {
-  errors: FieldErrors<SinginInputs | SingupInputs>;
-  name: keyof SinginInputs | keyof SingupInputs;
+  errors: FieldErrors<SinginInputs | SingupInputs | PasswordInputs>;
+  name: keyof SinginInputs | keyof SingupInputs | keyof PasswordInputs;
 }
 
 const InputErrorMessage = ({ errors, name }: InputErrorMessageProps) => {

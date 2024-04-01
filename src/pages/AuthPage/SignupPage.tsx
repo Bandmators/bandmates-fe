@@ -9,7 +9,7 @@ import { PATH } from '@/routes/path';
 const SignupPage = () => {
   return (
     <MobileLayout>
-      <h1>Sign up to Bandmates</h1>
+      <H1>Sign up to Bandmates</H1>
       <SignupForm />
       <Divider />
       <Group>
@@ -20,6 +20,9 @@ const SignupPage = () => {
 };
 export default SignupPage;
 
+const H1 = styled.h1`
+  margin-bottom: 4rem;
+`;
 const Group = styled.div`
   margin: 3rem 0rem;
   text-align: center;

@@ -46,7 +46,7 @@ export const Header = ({ children }: React.PropsWithChildren) => {
             </DropdownItem>
             <DropdownDivider />
             <DropdownItem>
-              <ItemLink to={PATH.SETTING}>Settings</ItemLink>
+              <ItemLink to={PATH.SETTINGS}>Settings</ItemLink>
             </DropdownItem>
             <DropdownDivider />
             <DropdownItem onClick={logout}>Sign out</DropdownItem>

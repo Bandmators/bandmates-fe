@@ -1,54 +1,57 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 import { minContainer } from '@/libs/media';
 import { useSidebarStore } from '@/stores/sidebar';
 
-import { ReactComponent as MailIcon } from '@/assets/icons/mail.svg';
+import { ReactComponent as NotificationIcon } from '@/assets/icons/notification.svg';
+import { ReactComponent as SecretIcon } from '@/assets/icons/secret.svg';
+import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
+import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
+import { PATH } from '@/routes/path';
 
 import DashboardLayout from '../Layout/DashboardLayout';
 
-type SettingFilterType = 'profile' | 'notification' | 'password' | 'account';
-
 type FilterMenuType = {
   name: string;
-  type: SettingFilterType;
+  path: string;
   icon: JSX.Element;
 };
 
 const filterMenus: FilterMenuType[] = [
   {
     name: 'Profile',
-    type: 'profile',
-    icon: <MailIcon strokeWidth={1} className="icon icon-md" />,
+    path: PATH._SETTINGS.PROFILE,
+    icon: <UserIcon strokeWidth={1} height={18} className="icon icon-md" />,
   },
   {
     name: 'Notification',
-    type: 'notification',
-    icon: <MailIcon strokeWidth={1} className="icon icon-md" />,
+    path: PATH._SETTINGS.NOTIFICATION,
+    icon: <NotificationIcon strokeWidth={1} height={18} className="icon icon-md" />,
   },
   {
     name: 'Password',
-    type: 'password',
-    icon: <MailIcon strokeWidth={1} className="icon icon-md" />,
+    path: PATH._SETTINGS.PASSWORD,
+    icon: <SecretIcon strokeWidth={1} height={18} className="icon icon-md" />,
   },
   {
     name: 'Account',
-    type: 'account',
-    icon: <MailIcon strokeWidth={1} className="icon icon-md" />,
+    path: PATH._SETTINGS.ACCOUNT,
+    icon: <SettingIcon strokeWidth={1} height={18} className="icon icon-md" />,
   },
 ];
 
 const SettingsPage = () => {
+  const { pathname } = useLocation();
   const setIsOpen = useSidebarStore(state => state.setIsOpen);
-  const [searchParams] = useSearchParams();
-  const filterType = searchParams.get('type') || filterMenus[0].type;
 
   React.useEffect(() => {
     setIsOpen(false);
   }, [setIsOpen]);
+
+  const isSelectedMenu = (page: string) => page === pathname.replace(PATH.SETTINGS, '').replace('/', '');
 
   return (
     <DashboardLayout>
@@ -57,8 +60,8 @@ const SettingsPage = () => {
           <h2>Settings</h2>
           <SettingMenuList>
             {filterMenus.map(m => (
-              <SettingMenu key={m.name} $active={m.type === filterType}>
-                <Link to={`?type=${m.type}`} className="menu-link">
+              <SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
+                <Link to={m.path} className="menu-link">
                   {m.icon} {m.name}
                 </Link>
               </SettingMenu>
@@ -67,17 +70,7 @@ const SettingsPage = () => {
         </ContainerMain>
 
         <ContainerSub>
-          {filterType === 'profile' ? (
-            <div>profile</div>
-          ) : filterType === 'notification' ? (
-            <div>notification</div>
-          ) : filterType === 'password' ? (
-            <div>password</div>
-          ) : filterType === 'account' ? (
-            <div>account</div>
-          ) : (
-            <div>dd</div>
-          )}
+          <Outlet />
         </ContainerSub>
       </DashboardLayout.Container>
     </DashboardLayout>
@@ -91,9 +84,12 @@ const ContainerMain = styled.div`
   min-width: 100%;
   padding: 1rem;
   ${minContainer.tablet('dashboard-container')} {
+    flex: 0 0 14rem;
+    min-width: 12rem;
+  }
+  ${minContainer.desktop('dashboard-container')} {
     flex: 0 0 18rem;
     min-width: 18rem;
-    padding: 0px;
   }
   h2 {
     margin-top: 0px;
@@ -101,10 +97,12 @@ const ContainerMain = styled.div`
 `;
 const ContainerSub = styled.div`
   width: 100%;
-  background-color: skyblue;
   padding: 1rem;
-  margin-top: 3rem;
   ${minContainer.tablet('dashboard-container')} {
+    width: calc(100% - 16rem);
+    margin-left: auto;
+  }
+  ${minContainer.desktop('dashboard-container')} {
     width: calc(100% - 20rem);
     margin-left: auto;
   }
@@ -115,21 +113,29 @@ const SettingMenuList = styled.ul`
   padding: 0px;
   list-style: none;
 `;
-const SettingMenu = styled.li<{ $active?: boolean }>`
+const SettingMenu = styled.li<{ active?: boolean }>`
   padding-left: 1rem;
   margin-top: 1.5rem;
   font-weight: 300;
   border-left: 2px solid transparent;
   ${props =>
-    props.$active &&
-    css`
-      border-left: 2px solid var(--primary);
-      font-weight: 600;
-      color: var(--primary);
-      .icon {
-        stroke-width: 2;
-      }
-    `}
+    props.active
+      ? css`
+          border-left: 2px solid var(--primary);
+          font-weight: 600;
+          color: var(--primary);
+          .icon {
+            stroke-width: 2;
+          }
+        `
+      : css`
+          &:hover {
+            font-weight: 400;
+            .icon {
+              stroke-width: 1.5;
+            }
+          }
+        `}
   .menu-link {
     display: flex;
     align-items: center;
