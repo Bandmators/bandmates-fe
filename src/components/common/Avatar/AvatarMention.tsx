@@ -13,7 +13,7 @@ const AvatarMention = ({ size, userId }: AvatarMentionProps) => {
     <AvatarMentionWrapper>
       <Avatar src="" alt="" size={size} />
       <div>
-        <Mention userId={userId} />
+        <Mention userId={userId} size={size} />
       </div>
     </AvatarMentionWrapper>
   );

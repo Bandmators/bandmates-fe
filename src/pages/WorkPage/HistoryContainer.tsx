@@ -27,7 +27,7 @@ const HistoryContainer = () => {
             <HistoryContentLink to="" title={history.content}>
               {history.content}
             </HistoryContentLink>
-            <AvatarMention userId={history.user.id} />
+            <AvatarMention userId={history.user.id} size="sm" />
             <div className="list-view">
               <span>{relativeTime(history.createdAt)}</span>
               <Button variant="outline">{history.uid}</Button>

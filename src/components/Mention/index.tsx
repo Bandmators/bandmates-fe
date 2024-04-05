@@ -1,20 +1,25 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Avatar, HoverCard, HoverCardContent, HoverCardToggle } from 'bmates-ui';
 import { Link } from 'react-router-dom';
 
 import FollowButton from '@/components/common/Button/FollowButton';
+import { SizeType } from '@/types/size';
 
 import { PATH } from '@/routes/path';
 
 interface MentionProps {
   userId: string;
+  size?: SizeType;
 }
 
-const Mention = ({ userId }: MentionProps) => {
+const Mention = ({ userId, size = 'md' }: MentionProps) => {
   return (
     <HoverCard>
       <HoverCardToggle style={{ display: 'inline' }}>
-        <MentionLink to={`${PATH.ROOT}${userId}`}>@{userId}</MentionLink>
+        <MentionLink to={`${PATH.ROOT}${userId}`} size={size}>
+          {userId}
+        </MentionLink>
       </HoverCardToggle>
       <HoverCardContent>
         <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', width: '300px' }}>
@@ -34,8 +39,29 @@ const Mention = ({ userId }: MentionProps) => {
 };
 export default Mention;
 
-const MentionLink = styled(Link)`
-  font-weight: 600;
+const MentionSizeStyles = ({ size }: { size: SizeType }) => {
+  switch (size) {
+    case 'sm':
+      return css`
+        font-size: 0.75rem;
+        font-weight: 400;
+      `;
+    case 'lg':
+      return css`
+        font-size: 1.25rem;
+        font-weight: 600;
+      `;
+    case 'md':
+    default:
+      return css`
+        font-size: 1rem;
+        font-weight: 600;
+      `;
+  }
+};
+
+const MentionLink = styled(Link)<{ size?: SizeType }>`
+  ${({ size }) => size && MentionSizeStyles({ size })}
 `;
 
 const HoverCardAvatarContainer = styled.div`
