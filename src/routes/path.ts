@@ -10,7 +10,9 @@ export const PATH = {
 
   WORK: '/:userId/:title',
   _WORK: {
+    OVERVIEW: '',
     EDIT: 'edit',
+    HISTORY: 'history',
     SETTING: 'setting',
   },
 
