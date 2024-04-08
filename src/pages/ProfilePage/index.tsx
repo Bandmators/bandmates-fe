@@ -3,12 +3,13 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 
+import ProfileGrid from '@/components/Grid/ProfileGrid';
 import ProfileCard from '@/components/Profile/ProfileCard';
 import ProfileOverview from '@/components/Profile/ProfileOverview';
 import ProfileRelationship from '@/components/Profile/ProfileRelationship';
 import ProfileStars from '@/components/Profile/ProfileStars';
 import ProfileWorks from '@/components/Profile/ProfileWorks';
-import { maxContainer, minContainer } from '@/libs/media';
+import { maxContainer } from '@/libs/media';
 import { UserType } from '@/types/user';
 
 import { ReactComponent as EditIcon } from '@/assets/icons/edit.svg';
@@ -60,11 +61,11 @@ const ProfilePage = () => {
   return (
     <DashboardLayout>
       <DashboardLayout.Container isFill>
-        <ContainerMain>
+        <ProfileGrid.Profile>
           <ProfileCard profile={profile} />
-        </ContainerMain>
+        </ProfileGrid.Profile>
 
-        <ContainerSub>
+        <ProfileGrid.Content>
           <ProfileNavigation>
             <NavigationMenu>
               {menus.map(menu => (
@@ -77,29 +78,12 @@ const ProfilePage = () => {
             </NavigationMenu>
           </ProfileNavigation>
           <ProfileContent>{contents[tab]}</ProfileContent>
-        </ContainerSub>
+        </ProfileGrid.Content>
       </DashboardLayout.Container>
     </DashboardLayout>
   );
 };
 export default ProfilePage;
-
-const ContainerMain = styled.div`
-  margin-left: 0px;
-  flex: 0 0 auto;
-  min-width: 100%;
-  ${minContainer.tablet('dashboard-container')} {
-    flex: 0 0 18rem;
-    min-width: 18rem;
-  }
-`;
-const ContainerSub = styled.div`
-  width: 100%;
-  ${minContainer.tablet('dashboard-container')} {
-    width: calc(100% - 20rem);
-    margin-left: auto;
-  }
-`;
 
 const ProfileNavigation = styled.nav`
   width: 100%;

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
-import { minContainer } from '@/libs/media';
+import SettingGrid from '@/components/Grid/SettingGrid';
 import { useSidebarStore } from '@/stores/sidebar';
 
 import { ReactComponent as NotificationIcon } from '@/assets/icons/notification.svg';
@@ -57,7 +57,7 @@ const SettingsPage = () => {
   return (
     <DashboardLayout>
       <DashboardLayout.Container isFill>
-        <ContainerMain>
+        <SettingGrid.Menu>
           <SettingMenuList>
             {filterMenus.map(m => (
               <SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
@@ -67,46 +67,16 @@ const SettingsPage = () => {
               </SettingMenu>
             ))}
           </SettingMenuList>
-        </ContainerMain>
+        </SettingGrid.Menu>
 
-        <ContainerSub>
+        <SettingGrid.Content>
           <Outlet />
-        </ContainerSub>
+        </SettingGrid.Content>
       </DashboardLayout.Container>
     </DashboardLayout>
   );
 };
 export default SettingsPage;
-
-const ContainerMain = styled.div`
-  margin-left: 0px;
-  flex: 0 0 auto;
-  min-width: 100%;
-  padding: 1rem;
-  ${minContainer.tablet('dashboard-container')} {
-    flex: 0 0 14rem;
-    min-width: 12rem;
-  }
-  ${minContainer.desktop('dashboard-container')} {
-    flex: 0 0 18rem;
-    min-width: 18rem;
-  }
-  h2 {
-    margin-top: 0px;
-  }
-`;
-const ContainerSub = styled.div`
-  width: 100%;
-  padding: 1rem;
-  ${minContainer.tablet('dashboard-container')} {
-    width: calc(100% - 16rem);
-    margin-left: auto;
-  }
-  ${minContainer.desktop('dashboard-container')} {
-    width: calc(100% - 20rem);
-    margin-left: auto;
-  }
-`;
 
 const SettingMenuList = styled.ul`
   margin: 0px;

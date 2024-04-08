@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
-import { minContainer } from '@/libs/media';
+import SettingGrid from '@/components/Grid/SettingGrid';
 import { useSidebarStore } from '@/stores/sidebar';
 
 import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
@@ -44,7 +44,7 @@ const WorkSettingContainer = () => {
 
   return (
     <>
-      <ContainerMain>
+      <SettingGrid.Menu>
         <SettingMenuList>
           {filterMenus.map(m => (
             <SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
@@ -54,43 +54,14 @@ const WorkSettingContainer = () => {
             </SettingMenu>
           ))}
         </SettingMenuList>
-      </ContainerMain>
-      <ContainerSub>
+      </SettingGrid.Menu>
+      <SettingGrid.Content>
         <Outlet />
-      </ContainerSub>
+      </SettingGrid.Content>
     </>
   );
 };
 export default WorkSettingContainer;
-
-const ContainerMain = styled.div`
-  flex: 0 0 auto;
-  min-width: 100%;
-  margin: 1rem 0rem;
-  ${minContainer.tablet('dashboard-container')} {
-    flex: 0 0 14rem;
-    min-width: 12rem;
-  }
-  ${minContainer.desktop('dashboard-container')} {
-    flex: 0 0 17rem;
-    min-width: 17rem;
-  }
-  h2 {
-    margin-top: 0px;
-  }
-`;
-const ContainerSub = styled.div`
-  width: 100%;
-  padding: 1rem;
-  ${minContainer.tablet('dashboard-container')} {
-    width: calc(100% - 15rem);
-    margin-left: auto;
-  }
-  ${minContainer.desktop('dashboard-container')} {
-    width: calc(100% - 18rem);
-    margin-left: auto;
-  }
-`;
 
 const SettingMenuList = styled.ul`
   margin: 0px;

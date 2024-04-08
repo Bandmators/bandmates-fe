@@ -9,23 +9,32 @@ import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
 import DashboardLayout from '@/pages/Layout/DashboardLayout';
 import { PATH } from '@/routes/path';
 
+type MenuType = {
+  href: string;
+  title: 'Overview' | 'Edit' | 'History' | 'Setting';
+  icon: React.ReactNode;
+};
+
 const WorkPage = () => {
   const { pathname } = useLocation();
   const { userId, title } = useParams();
   const decodedPathname = decodeURIComponent(pathname);
-  const menus = [
-    { href: `/${userId}/${title}`, title: 'Overview', icon: <HomeIcon height="1rem" /> },
-    { href: `/${userId}/${title}/${PATH._WORK.EDIT}`, title: 'Edit', icon: <EditIcon height="1rem" /> },
-    { href: `/${userId}/${title}/${PATH._WORK.HISTORY}`, title: 'History', icon: <HistoryIcon height="1rem" /> },
-    { href: `/${userId}/${title}/${PATH._WORK.SETTING}`, title: 'Setting', icon: <SettingIcon height="1rem" /> },
+  const menus: MenuType[] = [
+    { href: `/${userId}/${title}`, title: 'Overview', icon: <HomeIcon /> },
+    { href: `/${userId}/${title}/${PATH._WORK.EDIT}`, title: 'Edit', icon: <EditIcon /> },
+    { href: `/${userId}/${title}/${PATH._WORK.HISTORY}`, title: 'History', icon: <HistoryIcon /> },
+    { href: `/${userId}/${title}/${PATH._WORK.SETTING}`, title: 'Setting', icon: <SettingIcon /> },
   ];
+
+  const isActive = (menu: MenuType) =>
+    menu.title === 'Overview' ? decodedPathname === menu.href : decodedPathname.startsWith(menu.href);
 
   return (
     <DashboardLayout>
       <WorkNavigation>
         <NavigationMenu>
           {menus.map(menu => (
-            <NavigationMenuItem key={menu.title} active={decodedPathname === menu.href}>
+            <NavigationMenuItem key={menu.title} active={isActive(menu)}>
               <Link to={menu.href}>
                 {menu.icon} {menu.title}
               </Link>
@@ -58,6 +67,9 @@ const NavigationMenuItem = styled.li<{ active?: boolean }>`
   list-style: none;
   svg {
     stroke-width: 1;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.25rem;
   }
   a {
     padding: 0.25rem 0.5rem;
