@@ -11,6 +11,7 @@ import SettingPasswordContainer from '@/pages/SettingsPage/SettingPasswordContai
 import WorkPage from '@/pages/WorkPage';
 import HistoryContainer from '@/pages/WorkPage/HistoryContainer';
 import WorkContainer from '@/pages/WorkPage/WorkContainer';
+import WorkSettingContainer from '@/pages/WorkPage/WorkSettingContainer';
 
 import { PATH } from './path';
 
@@ -45,7 +46,17 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH._WORK.SETTING,
-        element: <p>dsf</p>,
+        element: <WorkSettingContainer />,
+        children: [
+          {
+            path: PATH._WORK._SETTING.GENERAL,
+            element: <p>ge</p>,
+          },
+          {
+            path: PATH._WORK._SETTING.COLLABORATORS,
+            element: <p>co</p>,
+          },
+        ],
       },
     ],
   },

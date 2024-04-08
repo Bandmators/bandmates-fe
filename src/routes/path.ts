@@ -14,6 +14,10 @@ export const PATH = {
     EDIT: 'edit',
     HISTORY: 'history',
     SETTING: 'setting',
+    _SETTING: {
+      GENERAL: '',
+      COLLABORATORS: 'collaborators',
+    },
   },
 
   SETTINGS: '/settings',

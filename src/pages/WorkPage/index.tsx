@@ -7,16 +7,17 @@ import { ReactComponent as EditIcon } from '@/assets/icons/edit.svg';
 import { ReactComponent as HomeIcon } from '@/assets/icons/home.svg';
 import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
 import DashboardLayout from '@/pages/Layout/DashboardLayout';
+import { PATH } from '@/routes/path';
 
 const WorkPage = () => {
-  const { userId, title } = useParams();
   const { pathname } = useLocation();
+  const { userId, title } = useParams();
   const decodedPathname = decodeURIComponent(pathname);
   const menus = [
     { href: `/${userId}/${title}`, title: 'Overview', icon: <HomeIcon height="1rem" /> },
-    { href: `/${userId}/${title}/edit`, title: 'Edit', icon: <EditIcon height="1rem" /> },
-    { href: `/${userId}/${title}/history`, title: 'History', icon: <HistoryIcon height="1rem" /> },
-    { href: `/${userId}/${title}/setting`, title: 'Setting', icon: <SettingIcon height="1rem" /> },
+    { href: `/${userId}/${title}/${PATH._WORK.EDIT}`, title: 'Edit', icon: <EditIcon height="1rem" /> },
+    { href: `/${userId}/${title}/${PATH._WORK.HISTORY}`, title: 'History', icon: <HistoryIcon height="1rem" /> },
+    { href: `/${userId}/${title}/${PATH._WORK.SETTING}`, title: 'Setting', icon: <SettingIcon height="1rem" /> },
   ];
 
   return (

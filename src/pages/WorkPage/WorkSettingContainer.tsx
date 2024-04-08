@@ -1,18 +1,14 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { minContainer } from '@/libs/media';
 import { useSidebarStore } from '@/stores/sidebar';
 
-import { ReactComponent as NotificationIcon } from '@/assets/icons/notification.svg';
-import { ReactComponent as SecretIcon } from '@/assets/icons/secret.svg';
 import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
 import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
 import { PATH } from '@/routes/path';
-
-import DashboardLayout from '../Layout/DashboardLayout';
 
 type FilterMenuType = {
   name: string;
@@ -22,28 +18,19 @@ type FilterMenuType = {
 
 const filterMenus: FilterMenuType[] = [
   {
-    name: 'Profile',
-    path: PATH._SETTINGS.PROFILE,
-    icon: <UserIcon strokeWidth={1} height={18} className="icon icon-md" />,
-  },
-  {
-    name: 'Notification',
-    path: PATH._SETTINGS.NOTIFICATION,
-    icon: <NotificationIcon strokeWidth={1} height={18} className="icon icon-md" />,
-  },
-  {
-    name: 'Password',
-    path: PATH._SETTINGS.PASSWORD,
-    icon: <SecretIcon strokeWidth={1} height={18} className="icon icon-md" />,
-  },
-  {
-    name: 'Account',
-    path: PATH._SETTINGS.ACCOUNT,
+    name: 'General',
+    path: PATH._WORK._SETTING.GENERAL,
     icon: <SettingIcon strokeWidth={1} height={18} className="icon icon-md" />,
+  },
+  {
+    name: 'Collaborators',
+    path: PATH._WORK._SETTING.COLLABORATORS,
+    icon: <UserIcon strokeWidth={1} height={18} className="icon icon-md" />,
   },
 ];
 
-const SettingsPage = () => {
+const WorkSettingContainer = () => {
+  const { userId, title } = useParams();
   const { pathname } = useLocation();
   const decodedPathname = decodeURIComponent(pathname);
   const setIsOpen = useSidebarStore(state => state.setIsOpen);
@@ -52,44 +39,41 @@ const SettingsPage = () => {
     setIsOpen(false);
   }, [setIsOpen]);
 
-  const isSelectedMenu = (page: string) => page === decodedPathname.replace(PATH.SETTINGS, '').replace('/', '');
+  const isSelectedMenu = (page: string) =>
+    page === decodedPathname.replace(`${userId}/${title}/${PATH._WORK.SETTING}`, '').replaceAll('/', '');
 
   return (
-    <DashboardLayout>
-      <DashboardLayout.Container isFill>
-        <ContainerMain>
-          <SettingMenuList>
-            {filterMenus.map(m => (
-              <SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
-                <Link to={m.path} className="menu-link">
-                  {m.icon} {m.name}
-                </Link>
-              </SettingMenu>
-            ))}
-          </SettingMenuList>
-        </ContainerMain>
-
-        <ContainerSub>
-          <Outlet />
-        </ContainerSub>
-      </DashboardLayout.Container>
-    </DashboardLayout>
+    <>
+      <ContainerMain>
+        <SettingMenuList>
+          {filterMenus.map(m => (
+            <SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
+              <Link to={m.path} className="menu-link">
+                {m.icon} {m.name}
+              </Link>
+            </SettingMenu>
+          ))}
+        </SettingMenuList>
+      </ContainerMain>
+      <ContainerSub>
+        <Outlet />
+      </ContainerSub>
+    </>
   );
 };
-export default SettingsPage;
+export default WorkSettingContainer;
 
 const ContainerMain = styled.div`
-  margin-left: 0px;
   flex: 0 0 auto;
   min-width: 100%;
-  padding: 1rem;
+  margin: 1rem 0rem;
   ${minContainer.tablet('dashboard-container')} {
     flex: 0 0 14rem;
     min-width: 12rem;
   }
   ${minContainer.desktop('dashboard-container')} {
-    flex: 0 0 18rem;
-    min-width: 18rem;
+    flex: 0 0 17rem;
+    min-width: 17rem;
   }
   h2 {
     margin-top: 0px;
@@ -99,11 +83,11 @@ const ContainerSub = styled.div`
   width: 100%;
   padding: 1rem;
   ${minContainer.tablet('dashboard-container')} {
-    width: calc(100% - 16rem);
+    width: calc(100% - 15rem);
     margin-left: auto;
   }
   ${minContainer.desktop('dashboard-container')} {
-    width: calc(100% - 20rem);
+    width: calc(100% - 18rem);
     margin-left: auto;
   }
 `;
