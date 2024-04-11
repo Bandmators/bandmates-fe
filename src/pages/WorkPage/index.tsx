@@ -1,5 +1,3 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { ReactComponent as HistoryIcon } from '@/assets/icons/clock.svg';
@@ -8,6 +6,8 @@ import { ReactComponent as HomeIcon } from '@/assets/icons/home.svg';
 import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
 import DashboardLayout from '@/pages/Layout/DashboardLayout';
 import { PATH } from '@/routes/path';
+
+import * as S from './style';
 
 type MenuType = {
   href: string;
@@ -31,17 +31,17 @@ const WorkPage = () => {
 
   return (
     <DashboardLayout>
-      <WorkNavigation>
-        <NavigationMenu>
+      <S.WorkNavigation>
+        <S.NavigationMenu>
           {menus.map(menu => (
-            <NavigationMenuItem key={menu.title} active={isActive(menu)}>
+            <S.NavigationMenuItem key={menu.title} active={isActive(menu)}>
               <Link to={menu.href}>
                 {menu.icon} {menu.title}
               </Link>
-            </NavigationMenuItem>
+            </S.NavigationMenuItem>
           ))}
-        </NavigationMenu>
-      </WorkNavigation>
+        </S.NavigationMenu>
+      </S.WorkNavigation>
       <DashboardLayout.Container>
         <Outlet />
       </DashboardLayout.Container>
@@ -49,44 +49,3 @@ const WorkPage = () => {
   );
 };
 export default WorkPage;
-
-const WorkNavigation = styled.nav`
-  width: 100%;
-  padding: 1rem 1rem;
-  background-color: ${({ theme }) => theme.colors.white};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray['400']};
-`;
-const NavigationMenu = styled.ul`
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-`;
-const NavigationMenuItem = styled.li<{ active?: boolean }>`
-  list-style: none;
-  svg {
-    stroke-width: 1;
-    width: 1rem;
-    height: 1rem;
-    margin-right: 0.25rem;
-  }
-  a {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.gray['100']};
-    }
-  }
-  ${({ active }) =>
-    active &&
-    css`
-      font-weight: 500;
-      svg {
-        stroke-width: 2;
-      }
-    `}
-`;

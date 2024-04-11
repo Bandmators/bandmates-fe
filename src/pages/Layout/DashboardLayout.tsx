@@ -35,9 +35,9 @@ const DashboardContent = styled.main`
   container-type: inline-size;
 `;
 
-const Container = styled.div<{ isFill?: boolean }>`
+const Container = styled.div<{ fill?: boolean }>`
   margin: 0rem;
-  padding: ${({ isFill }) => (isFill ? `0rem` : `1rem`)};
+  padding: ${({ fill }) => (fill ? `0rem` : `1rem`)};
   display: flex;
   flex-direction: column;
 

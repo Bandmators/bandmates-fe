@@ -1,5 +1,3 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 
@@ -9,13 +7,14 @@ import ProfileOverview from '@/components/Profile/ProfileOverview';
 import ProfileRelationship from '@/components/Profile/ProfileRelationship';
 import ProfileStars from '@/components/Profile/ProfileStars';
 import ProfileWorks from '@/components/Profile/ProfileWorks';
-import { maxContainer } from '@/libs/media';
 import { UserType } from '@/types/user';
 
 import { ReactComponent as EditIcon } from '@/assets/icons/edit.svg';
 import { ReactComponent as HomeIcon } from '@/assets/icons/home.svg';
 import { ReactComponent as StarIcon } from '@/assets/icons/star.svg';
 import DashboardLayout from '@/pages/Layout/DashboardLayout';
+
+import * as S from './style';
 
 type TabType = 'overview' | 'works' | 'stars' | 'followers' | 'followings';
 type MenuType = {
@@ -60,71 +59,27 @@ const ProfilePage = () => {
 
   return (
     <DashboardLayout>
-      <DashboardLayout.Container isFill>
+      <DashboardLayout.Container fill>
         <ProfileGrid.Profile>
           <ProfileCard profile={profile} />
         </ProfileGrid.Profile>
 
         <ProfileGrid.Content>
-          <ProfileNavigation>
-            <NavigationMenu>
+          <S.ProfileNavigation>
+            <S.NavigationMenu>
               {menus.map(menu => (
-                <NavigationMenuItem key={menu.title} active={tab === menu.tab}>
+                <S.NavigationMenuItem key={menu.title} active={tab === menu.tab}>
                   <Link to={`/${userId}?tab=${menu.tab}`}>
                     {menu.icon} {menu.title}
                   </Link>
-                </NavigationMenuItem>
+                </S.NavigationMenuItem>
               ))}
-            </NavigationMenu>
-          </ProfileNavigation>
-          <ProfileContent>{contents[tab]}</ProfileContent>
+            </S.NavigationMenu>
+          </S.ProfileNavigation>
+          <S.ProfileContent>{contents[tab]}</S.ProfileContent>
         </ProfileGrid.Content>
       </DashboardLayout.Container>
     </DashboardLayout>
   );
 };
 export default ProfilePage;
-
-const ProfileNavigation = styled.nav`
-  width: 100%;
-  padding: 1rem 1rem;
-  background-color: ${({ theme }) => theme.colors.white};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray['400']};
-  margin-bottom: 1rem;
-`;
-const NavigationMenu = styled.ul`
-  margin: 0px;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-`;
-const NavigationMenuItem = styled.li<{ active?: boolean }>`
-  list-style: none;
-  svg {
-    stroke-width: 1;
-  }
-  a {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.gray['100']};
-    }
-  }
-  ${({ active }) =>
-    active &&
-    css`
-      font-weight: 500;
-      svg {
-        stroke-width: 2;
-      }
-    `}
-`;
-const ProfileContent = styled.div`
-  ${maxContainer.tablet('dashboard-container')} {
-    margin: 1rem;
-  }
-`;

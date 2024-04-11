@@ -1,5 +1,3 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import React from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
@@ -9,6 +7,8 @@ import { useSidebarStore } from '@/stores/sidebar';
 import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
 import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
 import { PATH } from '@/routes/path';
+
+import * as S from './style';
 
 type FilterMenuType = {
   name: string;
@@ -45,15 +45,15 @@ const WorkSettingPage = () => {
   return (
     <>
       <SettingGrid.Menu>
-        <SettingMenuList>
+        <S.SettingMenuList>
           {filterMenus.map(m => (
-            <SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
+            <S.SettingMenu key={m.name} active={isSelectedMenu(m.path)}>
               <Link to={m.path} className="menu-link">
                 {m.icon} {m.name}
               </Link>
-            </SettingMenu>
+            </S.SettingMenu>
           ))}
-        </SettingMenuList>
+        </S.SettingMenuList>
       </SettingGrid.Menu>
       <SettingGrid.Content>
         <Outlet />
@@ -62,38 +62,3 @@ const WorkSettingPage = () => {
   );
 };
 export default WorkSettingPage;
-
-const SettingMenuList = styled.ul`
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-`;
-const SettingMenu = styled.li<{ active?: boolean }>`
-  padding-left: 1rem;
-  margin-bottom: 1.5rem;
-  font-weight: 300;
-  border-left: 2px solid transparent;
-  ${props =>
-    props.active
-      ? css`
-          border-left: 2px solid var(--primary);
-          font-weight: 600;
-          color: var(--primary);
-          .icon {
-            stroke-width: 2;
-          }
-        `
-      : css`
-          &:hover {
-            font-weight: 400;
-            .icon {
-              stroke-width: 1.5;
-            }
-          }
-        `}
-  .menu-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-`;
