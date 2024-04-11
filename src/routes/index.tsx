@@ -9,9 +9,9 @@ import SettingAccountContainer from '@/pages/SettingsPage/SettingAccountContaine
 import SettingNotificationContainer from '@/pages/SettingsPage/SettingNotificationContainer';
 import SettingPasswordContainer from '@/pages/SettingsPage/SettingPasswordContainer';
 import WorkPage from '@/pages/WorkPage';
-import HistoryContainer from '@/pages/WorkPage/HistoryContainer';
-import WorkContainer from '@/pages/WorkPage/WorkContainer';
-import WorkSettingContainer from '@/pages/WorkPage/WorkSettingContainer';
+import WorkHistoryPage from '@/pages/WorkPage/WorkHistoryPage';
+import WorkOverviewPage from '@/pages/WorkPage/WorkOverviewPage';
+import WorkSettingPage from '@/pages/WorkPage/WorkSettingPage';
 
 import { PATH } from './path';
 
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: PATH._WORK.OVERVIEW,
-        element: <WorkContainer />,
+        element: <WorkOverviewPage />,
       },
       {
         path: PATH._WORK.EDIT,
@@ -42,11 +42,11 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH._WORK.HISTORY,
-        element: <HistoryContainer />,
+        element: <WorkHistoryPage />,
       },
       {
         path: PATH._WORK.SETTING,
-        element: <WorkSettingContainer />,
+        element: <WorkSettingPage />,
         children: [
           {
             path: PATH._WORK._SETTING.GENERAL,

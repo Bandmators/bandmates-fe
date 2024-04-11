@@ -7,7 +7,7 @@ import AvatarMention from '@/components/common/Avatar/AvatarMention';
 import { WorkHistoryType } from '@/types/work';
 import { relativeTime } from '@/utils/time';
 
-const HistoryContainer = () => {
+const WorkHistoryPage = () => {
   const [histories, setHistories] = useState<WorkHistoryType[]>([]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const HistoryContainer = () => {
     </Container>
   );
 };
-export default HistoryContainer;
+export default WorkHistoryPage;
 
 const Container = styled.div`
   width: 100%;

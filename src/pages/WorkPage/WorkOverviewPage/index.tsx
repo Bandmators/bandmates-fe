@@ -8,7 +8,7 @@ import WorkInfo from '@/components/Work/WorkInfo';
 import WorkMates from '@/components/Work/WorkMates';
 import { WorkType } from '@/types/work';
 
-const WorkContainer = () => {
+const WorkOverviewPage = () => {
   const [work, setWork] = useState<WorkType>();
   const [mates, setMates] = useState<string[]>([]);
 
@@ -53,7 +53,7 @@ const WorkContainer = () => {
     </>
   );
 };
-export default WorkContainer;
+export default WorkOverviewPage;
 
 const WorkGroup = styled.div`
   margin-bottom: 5rem;

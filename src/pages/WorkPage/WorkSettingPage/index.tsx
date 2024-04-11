@@ -29,7 +29,7 @@ const filterMenus: FilterMenuType[] = [
   },
 ];
 
-const WorkSettingContainer = () => {
+const WorkSettingPage = () => {
   const { userId, title } = useParams();
   const { pathname } = useLocation();
   const decodedPathname = decodeURIComponent(pathname);
@@ -61,7 +61,7 @@ const WorkSettingContainer = () => {
     </>
   );
 };
-export default WorkSettingContainer;
+export default WorkSettingPage;
 
 const SettingMenuList = styled.ul`
   margin: 0px;
