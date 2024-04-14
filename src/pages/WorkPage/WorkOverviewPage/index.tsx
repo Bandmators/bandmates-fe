@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import Conversation from '@/components/Conversation';
+import Conversation from '@/components/Discussion';
 import WorkGrid from '@/components/Grid/WorkGrid';
 import WorkBands from '@/components/Work/WorkBands';
 import WorkInfo from '@/components/Work/WorkInfo';

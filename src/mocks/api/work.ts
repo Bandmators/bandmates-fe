@@ -86,5 +86,30 @@ const handler = [
       },
     );
   }),
+
+  http.get('/api/work/0/discussions', () => {
+    return HttpResponse.json(
+      {
+        comments: [
+          {
+            user: UserDataList[0],
+            comment: 'Awesome works!',
+            createdAt: new Date(),
+          },
+          {
+            user: UserDataList[0],
+            content: 'Good.',
+            createdAt: new Date('2024-04-01'),
+          },
+        ],
+      },
+      {
+        status: 201,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+  }),
 ];
 export default handler;

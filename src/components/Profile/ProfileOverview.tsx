@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 import AlbumBox from '@/components/Album/AlbumBox';
-import Conversation from '@/components/Conversation';
+import Conversation from '@/components/Discussion';
 import { AlbumType } from '@/types/album';
 
 interface ProfileOverviewProps {

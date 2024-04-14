@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Button, Textarea } from 'bmates-ui';
 
-const ConversationForm = () => {
+const DiscussionForm = () => {
   return (
     <Form>
       <Textarea placeholder="Add to the comment" />
@@ -9,7 +9,7 @@ const ConversationForm = () => {
     </Form>
   );
 };
-export default ConversationForm;
+export default DiscussionForm;
 
 const Form = styled.form`
   display: flex;
