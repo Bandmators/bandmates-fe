@@ -1,5 +1,6 @@
-import { Button } from 'bmates-ui';
+import { AutoPagination, Button } from 'bmates-ui';
 import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import AvatarMention from '@/components/common/Avatar/AvatarMention';
 import { WorkHistoryType } from '@/types/work';
@@ -9,6 +10,8 @@ import * as S from './style';
 
 const WorkHistoryPage = () => {
   const [histories, setHistories] = useState<WorkHistoryType[]>([]);
+  const [searchParams] = useSearchParams();
+  const pageNo: number = parseInt(searchParams.get('page')!) || 1;
 
   useEffect(() => {
     fetch('/api/work/0/history')
@@ -35,6 +38,9 @@ const WorkHistoryPage = () => {
           </S.HistoryListItem>
         ))}
       </S.HistoryList>
+      <S.HistoryFooter>
+        <AutoPagination pageNo={pageNo} pageSize={8} pageGap={5} linkas={Link} />
+      </S.HistoryFooter>
     </S.Container>
   );
 };

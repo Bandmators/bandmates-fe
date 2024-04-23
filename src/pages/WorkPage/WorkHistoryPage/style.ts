@@ -49,3 +49,9 @@ export const HistoryContentLink = styled(Link)`
     text-decoration: underline;
   }
 `;
+
+export const HistoryFooter = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0rem;
+`;

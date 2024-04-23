@@ -1,9 +1,9 @@
-import React from 'react';
+// import React from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import SettingGrid from '@/components/Grid/SettingGrid';
-import { useSidebarStore } from '@/stores/sidebar';
 
+// import { useSidebarStore } from '@/stores/sidebar';
 import { ReactComponent as SettingIcon } from '@/assets/icons/settings.svg';
 import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
 import { PATH } from '@/routes/path';
@@ -33,11 +33,11 @@ const WorkSettingPage = () => {
   const { userId, title } = useParams();
   const { pathname } = useLocation();
   const decodedPathname = decodeURIComponent(pathname);
-  const setIsOpen = useSidebarStore(state => state.setIsOpen);
+  // const setIsOpen = useSidebarStore(state => state.setIsOpen);
 
-  React.useEffect(() => {
-    setIsOpen(false);
-  }, [setIsOpen]);
+  // React.useEffect(() => {
+  // setIsOpen(false);
+  // }, []);
 
   const isSelectedMenu = (page: string) =>
     page === decodedPathname.replace(`${userId}/${title}/${PATH._WORK.SETTING}`, '').replaceAll('/', '');
