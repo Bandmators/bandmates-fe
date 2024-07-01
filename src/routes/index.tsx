@@ -9,6 +9,7 @@ import SettingAccountContainer from '@/pages/SettingsPage/SettingAccountContaine
 import SettingNotificationContainer from '@/pages/SettingsPage/SettingNotificationContainer';
 import SettingPasswordContainer from '@/pages/SettingsPage/SettingPasswordContainer';
 import WorkPage from '@/pages/WorkPage';
+import WorkEditPage from '@/pages/WorkPage/WorkEditPage';
 import WorkHistoryPage from '@/pages/WorkPage/WorkHistoryPage';
 import WorkOverviewPage from '@/pages/WorkPage/WorkOverviewPage';
 import WorkSettingPage from '@/pages/WorkPage/WorkSettingPage';
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH._WORK.EDIT,
-        element: <p>Edit</p>,
+        element: <WorkEditPage />,
       },
       {
         path: PATH._WORK.HISTORY,
