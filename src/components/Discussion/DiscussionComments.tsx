@@ -19,7 +19,7 @@ const DiscussionComments = () => {
   return (
     <CommentsContainer>
       {comments.map(comment => (
-        <Comment comment={comment} />
+        <Comment key={comment.user.id + comment.createdAt} comment={comment} />
       ))}
     </CommentsContainer>
   );

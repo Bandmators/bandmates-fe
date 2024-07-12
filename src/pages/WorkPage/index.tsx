@@ -42,7 +42,7 @@ const WorkPage = () => {
           ))}
         </S.NavigationMenu>
       </S.WorkNavigation>
-      <DashboardLayout.Container>
+      <DashboardLayout.Container fullscreen={isActive(menus[1])}>
         <Outlet />
       </DashboardLayout.Container>
     </DashboardLayout>

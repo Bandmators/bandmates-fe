@@ -35,7 +35,7 @@ const DashboardContent = styled.main`
   container-type: inline-size;
 `;
 
-const Container = styled.div<{ fill?: boolean }>`
+const Container = styled.div<{ fill?: boolean; fullscreen?: boolean }>`
   margin: 0rem;
   padding: ${({ fill }) => (fill ? `0rem` : `1rem`)};
   display: flex;
@@ -46,11 +46,11 @@ const Container = styled.div<{ fill?: boolean }>`
     margin: 3rem 0rem;
     flex-direction: row;
   }
-  ${minContainer.desktop('dashboard-container')} {
+  ${props => !props.fullscreen && minContainer.desktop('dashboard-container')} {
     max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktop} - 1rem)`};
     margin: 3rem auto;
   }
-  ${minContainer.desktopLarge('dashboard-container')} {
+  ${props => !props.fullscreen && minContainer.desktopLarge('dashboard-container')} {
     max-width: ${({ theme }) => css`calc(${theme.breakpoints.desktopLarge} - 1rem)`};
   }
 `;

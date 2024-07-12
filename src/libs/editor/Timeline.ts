@@ -1,18 +1,18 @@
+import { EditorStyleType } from './types/editor';
+
 export class Timeline {
   private _ctx: CanvasRenderingContext2D;
-  private _scrollX: number;
-  private _timeEnd: number;
-  private _timeRedLinePosX: number = 0;
-  private _timeLine = {
-    startY: 30,
-    gapHeight: 10,
-    gapWidth: 20,
-  };
 
-  constructor(ctx: CanvasRenderingContext2D, timeEnd: number, scrollX: number) {
+  private _timeRedLinePosX: number = 0;
+
+  constructor(
+    ctx: CanvasRenderingContext2D,
+    private style: EditorStyleType,
+    private _timeEnd: number,
+    private _scrollX: number,
+    private posY: number = 30,
+  ) {
     this._ctx = ctx;
-    this._timeEnd = timeEnd;
-    this._scrollX = scrollX;
   }
 
   drawTime() {
@@ -23,37 +23,37 @@ export class Timeline {
 
     const divide = 5; // or 10
     for (let i = 0; i < this._timeEnd; i++) {
-      const begin = this._timeLine.gapWidth * divide * i;
+      const begin = this.style.gapWidth * divide * i;
 
       this._ctx.strokeStyle = '#999999';
       this._ctx.beginPath();
-      this._ctx.moveTo(begin, this._timeLine.startY);
-      this._ctx.lineTo(begin, this._timeLine.startY + this._timeLine.gapHeight);
+      this._ctx.moveTo(begin, this.posY);
+      this._ctx.lineTo(begin, this.posY + this.style.gapHeight);
       this._ctx.stroke();
 
       this._ctx.strokeStyle = '#e3e3e3';
       this._ctx.textAlign = 'center';
-      this._ctx.fillText(`${i}s`, begin, this._timeLine.startY - 3);
+      this._ctx.fillText(`${i}s`, begin, this.posY - 3);
 
       for (let j = 1; j < divide; j++) {
         this._ctx.beginPath();
-        this._ctx.moveTo(begin + j * this._timeLine.gapWidth, this._timeLine.startY);
-        this._ctx.lineTo(begin + j * this._timeLine.gapWidth, this._timeLine.startY + this._timeLine.gapHeight / 2);
+        this._ctx.moveTo(begin + j * this.style.gapWidth, this.posY);
+        this._ctx.lineTo(begin + j * this.style.gapWidth, this.posY + this.style.gapHeight / 2);
         this._ctx.stroke();
       }
     }
 
     this._ctx.strokeStyle = '#e3e3e3';
     this._ctx.beginPath();
-    this._ctx.moveTo(0, this._timeLine.startY);
-    this._ctx.lineTo(this._timeLine.gapWidth * divide * this._timeEnd, this._timeLine.startY);
+    this._ctx.moveTo(0, this.posY);
+    this._ctx.lineTo(this.style.gapWidth * divide * this._timeEnd, this.posY);
     this._ctx.stroke();
 
     this._ctx.restore();
   }
 
   drawRedLine(dT: number) {
-    this._timeRedLinePosX += this._timeLine.gapWidth * 10 * dT;
+    this._timeRedLinePosX += this.style.gapWidth * 10 * dT;
     // if (this._timeRedLinePosX > this._ctx.canvas.width) this._timeRedLinePosX = 0;
 
     this._ctx.save();
@@ -62,9 +62,9 @@ export class Timeline {
     this._ctx.fillStyle = 'red';
     this._ctx.beginPath();
     this._ctx.moveTo(this._timeRedLinePosX - 6, 0);
-    this._ctx.lineTo(this._timeRedLinePosX - 6, this._timeLine.startY / 2);
-    this._ctx.lineTo(this._timeRedLinePosX, this._timeLine.startY / 2 + 10);
-    this._ctx.lineTo(this._timeRedLinePosX + 6, this._timeLine.startY / 2);
+    this._ctx.lineTo(this._timeRedLinePosX - 6, this.posY / 2);
+    this._ctx.lineTo(this._timeRedLinePosX, this.posY / 2 + 10);
+    this._ctx.lineTo(this._timeRedLinePosX + 6, this.posY / 2);
     this._ctx.lineTo(this._timeRedLinePosX + 6, 0);
     this._ctx.fill();
 
