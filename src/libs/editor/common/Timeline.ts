@@ -1,4 +1,4 @@
-import { EditorStyleType } from './types/editor';
+import { EditorStyleType } from '../types/editor';
 
 export class Timeline {
   private _ctx: CanvasRenderingContext2D;

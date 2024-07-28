@@ -1,1 +1,3 @@
-export * from './Editor';
+export * from './lib';
+export * from './types';
+export * from './common';
