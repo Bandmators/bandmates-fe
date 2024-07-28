@@ -2,6 +2,7 @@ import { Node } from '../lib';
 import { EditorStyleType, SongDataType } from '../types/editor';
 
 export class Wave extends Node {
+  override name = 'Wave';
   constructor(
     private data: SongDataType,
     private style: EditorStyleType,
@@ -11,8 +12,10 @@ export class Wave extends Node {
     super();
   }
 
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  override update(_currentTime: number) {}
+
   override draw(_ctx: CanvasRenderingContext2D) {
-    console.log('draw');
     _ctx.save();
     _ctx.translate(-this._scrollX, 0);
 

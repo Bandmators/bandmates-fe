@@ -8,16 +8,17 @@ export class Container<ChildType extends Node = Node> extends Node {
     this.children.push(child);
   }
 
-  override update(currentTime: number) {
-    // console.log(this.children);
+  _update(_currentTime: number, _ctx: CanvasRenderingContext2D) {
+    this.update(_currentTime);
+    this.draw(_ctx);
     this.children.forEach(child => {
-      child.update(currentTime);
-      // child.draw(this);
+      child._update(_currentTime, _ctx);
     });
   }
 
-  override draw(_ctx: CanvasRenderingContext2D) {
-    console.log(this.name);
-    this.children.forEach(child => child.draw(_ctx));
-  }
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  override update(_currentTime: number) {}
+
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  override draw(_ctx: CanvasRenderingContext2D) {}
 }

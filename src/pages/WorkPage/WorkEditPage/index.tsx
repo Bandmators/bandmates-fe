@@ -14,8 +14,8 @@ const data: EditorDataType[] = [
           {
             src: '',
             user: '',
-            start: 0,
-            long: 15,
+            start: 10,
+            long: 35,
             group: 0,
             instrument: 'Piano',
           },
@@ -48,7 +48,7 @@ const data: EditorDataType[] = [
           {
             src: '',
             user: '',
-            start: 130,
+            start: 80,
             long: 15,
             group: 1,
             instrument: 'Guitar',

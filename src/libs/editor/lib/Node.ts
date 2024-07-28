@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Statable } from './State';
 
 export abstract class Node extends Statable {
@@ -9,16 +8,17 @@ export abstract class Node extends Statable {
   height = 0;
   eventEnabled = true;
 
-  // protected _update(_ctx: CanvasRenderingContext2D) {
-  //   this.draw(_ctx);
-  //   this.update();
-  // }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  update(_currentTime: number) {
-    // console.log(_currentTime);
+  _update(_currentTime: number, _ctx: CanvasRenderingContext2D) {
+    this.update(_currentTime);
+    this.draw(_ctx);
   }
 
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  update(_currentTime: number) {
+    console.log(_currentTime);
+  }
+
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   draw(_ctx: CanvasRenderingContext2D) {}
 
   isIntersection(x: number, y: number) {

@@ -3,6 +3,7 @@ import { Group } from '../lib';
 import { TrackDataType } from '../types';
 
 export class TrackGroup extends Group {
+  override name = 'TrackGroup';
   constructor(private data: TrackDataType[] = []) {
     super();
     console.log(data);

@@ -39,7 +39,7 @@ export class Stage extends Container<Group> {
     if (this._raf) cancelAnimationFrame(this._raf);
   };
 
-  private _update = (currentTime: number) => {
+  override _update = (currentTime: number) => {
     this._raf = requestAnimationFrame(this._update);
 
     this.dT = (currentTime - this.prevTime) / 1000;
@@ -48,9 +48,9 @@ export class Stage extends Container<Group> {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.update(currentTime);
+    this.draw(this.ctx);
     this.children.forEach(child => {
-      child.update(currentTime);
-      child.draw(this.ctx);
+      child._update(currentTime, this.ctx);
     });
   };
 
