@@ -38,8 +38,6 @@ export class Editor extends Stage {
 
   private timeline: Timeline | undefined;
 
-  private waves: Wave[] = [];
-
   override name = 'BEditor';
 
   data: EditorDataType[] = [];
@@ -65,14 +63,12 @@ export class Editor extends Stage {
       // this.addWave(d);
       // this.waves.push(new Wave(this.ctx, d, this.style, 100));
     });
-    console.log('data', this.children);
   };
 
   addTrackGroup(data: TrackDataType[]) {
     const group = new TrackGroup(data);
     this.children.push(group);
     data.forEach(d => this.addTrack(group, d.songs));
-    console.log(this.children);
     return group;
   }
 
@@ -89,15 +85,18 @@ export class Editor extends Stage {
     return wave;
   }
 
-  override update = () => {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  override update(currentTime: number) {
     // Wave surfer
     // this.children.forEach(child => child.up);
     // this.children.forEach(child => child.draw(this.ctx));
 
     // Timeline
-    this.timeline?.drawTime();
-    this.timeline?.drawRedLine(this.dT);
-  };
+    this.timeline?.draw(this.dT);
+  }
+
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  override draw(ctx: CanvasRenderingContext2D) {}
 
   // private _onClick = (event: MouseEvent) => {
   //   for (let i = this.children.length - 1; i >= 0; i--) {

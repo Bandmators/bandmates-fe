@@ -15,6 +15,11 @@ export class Timeline {
     this._ctx = ctx;
   }
 
+  draw(dT: number) {
+    this.drawTime();
+    this.drawRedLine(dT);
+  }
+
   drawTime() {
     this._ctx.save();
     this._ctx.translate(-this._scrollX, 0);

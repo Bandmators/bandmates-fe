@@ -1,9 +1,10 @@
 import { Container, Group } from './';
 
-export class Stage extends Container<Group> {
+export abstract class Stage extends Container<Group> {
   override name = 'Stage';
-  private _canvas: HTMLCanvasElement | null = null;
-  private _ctx: CanvasRenderingContext2D | null = null;
+  canvas: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+
   private _raf: number | null = null;
 
   protected dT = 0;
@@ -13,10 +14,12 @@ export class Stage extends Container<Group> {
     super();
 
     this.canvas = element;
+    this.ctx = this.canvas.getContext('2d')!;
     this.prevTime = performance.now();
 
     this._initListener();
     this._onResize();
+    this._startLoop();
   }
 
   private _initListener = () => {
@@ -26,20 +29,23 @@ export class Stage extends Container<Group> {
     this.canvas.addEventListener('mouseup', this._onMouseUp);
     this.canvas.addEventListener('mouseleave', this._onMouseUp);
     window.addEventListener('resize', this._onResize);
-    this._raf = requestAnimationFrame(this._update);
   };
 
-  destroy = () => {
-    this.canvas.removeEventListener('click', this._onClick);
-    this.canvas.removeEventListener('mousedown', this._onMouseDown);
-    this.canvas.removeEventListener('mousemove', this._onMouseMove);
-    this.canvas.removeEventListener('mouseup', this._onMouseUp);
-    this.canvas.removeEventListener('mouseleave', this._onMouseUp);
-    window.removeEventListener('resize', this._onResize);
-    if (this._raf) cancelAnimationFrame(this._raf);
-  };
+  private _startLoop() {
+    const ticker = (currentTime: number) => {
+      this._raf = requestAnimationFrame(ticker);
 
-  override _update = (currentTime: number) => {
+      this.dT = (currentTime - this.prevTime) / 1000;
+      this.prevTime = currentTime;
+
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      this._tick(currentTime, this.ctx);
+    };
+    this._raf = requestAnimationFrame(ticker);
+  }
+
+  private _update = (currentTime: number) => {
     this._raf = requestAnimationFrame(this._update);
 
     this.dT = (currentTime - this.prevTime) / 1000;
@@ -47,23 +53,8 @@ export class Stage extends Container<Group> {
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.update(currentTime);
-    this.draw(this.ctx);
-    this.children.forEach(child => {
-      child._update(currentTime, this.ctx);
-    });
+    this._tick(currentTime, this.ctx);
   };
-
-  protected get canvas() {
-    return this._canvas!;
-  }
-  protected set canvas(canvas: HTMLCanvasElement) {
-    this._canvas = canvas;
-    this._ctx = canvas.getContext('2d');
-  }
-  protected get ctx() {
-    return this._ctx!;
-  }
 
   private _onClick = (event: MouseEvent) => {
     for (let i = this.children.length - 1; i >= 0; i--) {
@@ -100,5 +91,15 @@ export class Stage extends Container<Group> {
   private _onResize = () => {
     this.canvas.width = document.body.clientWidth;
     this.canvas.height = document.body.clientHeight;
+  };
+
+  destroy = () => {
+    this.canvas.removeEventListener('click', this._onClick);
+    this.canvas.removeEventListener('mousedown', this._onMouseDown);
+    this.canvas.removeEventListener('mousemove', this._onMouseMove);
+    this.canvas.removeEventListener('mouseup', this._onMouseUp);
+    this.canvas.removeEventListener('mouseleave', this._onMouseUp);
+    window.removeEventListener('resize', this._onResize);
+    if (this._raf) cancelAnimationFrame(this._raf);
   };
 }

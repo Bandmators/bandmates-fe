@@ -1,6 +1,6 @@
 import { Node } from './Node';
 
-export class Container<ChildType extends Node = Node> extends Node {
+export abstract class Container<ChildType extends Node = Node> extends Node {
   override name = 'container';
   children: ChildType[] = [];
 
@@ -8,17 +8,8 @@ export class Container<ChildType extends Node = Node> extends Node {
     this.children.push(child);
   }
 
-  _update(_currentTime: number, _ctx: CanvasRenderingContext2D) {
-    this.update(_currentTime);
-    this.draw(_ctx);
-    this.children.forEach(child => {
-      child._update(_currentTime, _ctx);
-    });
+  override _tick(currentTime: number, ctx: CanvasRenderingContext2D) {
+    super._tick(currentTime, ctx);
+    this.children.forEach(child => child._tick(currentTime, ctx));
   }
-
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  override update(_currentTime: number) {}
-
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  override draw(_ctx: CanvasRenderingContext2D) {}
 }

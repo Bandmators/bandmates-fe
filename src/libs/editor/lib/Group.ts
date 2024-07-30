@@ -1,5 +1,5 @@
 import { Container } from './Container';
 
-export class Group extends Container {
+export abstract class Group extends Container {
   override name = 'Group';
 }
