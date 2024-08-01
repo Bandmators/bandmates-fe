@@ -12,16 +12,20 @@ export abstract class Node extends Statable {
   abstract draw(ctx: CanvasRenderingContext2D): void;
 
   _tick(currentTime: number, ctx: CanvasRenderingContext2D) {
-    // console.log('tick');
     this.update(currentTime);
     this.draw(ctx);
   }
 
   isIntersection(x: number, y: number) {
-    return x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height;
+    return this.x <= x && x <= this.x + this.width && this.y <= y && y <= this.y + this.height;
   }
 
-  dispatchEvent(event: string, ...args: unknown[]) {
-    this.call(event, ...args);
+  // dispatchEvent(event: string, ...args: unknown[]) {
+  //   this.call(event, ...args);
+  // }
+
+  hitTest(x: number, y: number): Node | null {
+    if (this.isIntersection(x, y)) return this;
+    return null;
   }
 }

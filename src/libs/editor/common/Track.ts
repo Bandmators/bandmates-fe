@@ -3,6 +3,7 @@ import { Group } from '../lib';
 
 export class Track extends Group {
   override name = 'Track';
+
   constructor(private data: SongDataType[]) {
     super();
     // this.data.forEach(child => this.add(new Wave(child)));

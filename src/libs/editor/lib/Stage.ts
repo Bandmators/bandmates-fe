@@ -1,4 +1,69 @@
+import { EventData, EventType } from '../types';
+import { getRelativeMousePosition } from '../utils/position';
 import { Container, Group } from './';
+
+// export class EventManager {
+//   stage;
+//   canvas;
+//   listeners;
+
+//   constructor(stage: Stage) {
+//     this.stage = stage;
+//     this.canvas = stage.canvas;
+//     this.listeners = {};
+
+//     this.setupListeners();
+//   }
+
+//   setupListeners() {
+//     const events = ['click', 'mousemove', 'mousedown', 'mouseup'];
+//     events.forEach(eventType => {
+//       this.canvas.addEventListener(eventType, (e) => this.handleEvent(eventType, e));
+//     });
+//   }
+
+//   handleEvent(eventType: string, e: any) {
+//     const point = this.getMousePosition(e);
+//     const target = this.hitTest(point);
+//     this.dispatchEvent(eventType, target, e);
+//   }
+
+//   getMousePosition(e) {
+//     const rect = this.canvas.getBoundingClientRect();
+//     return {
+//       x: e.clientX - rect.left,
+//       y: e.clientY - rect.top
+//     };
+//   }
+
+//   hitTest(point: any) {
+//     // 여기에 히트 테스팅 로직 구현
+//     // Stage부터 시작해서 Node까지 재귀적으로 검사
+//     return this.stage.hitTest(point);
+//   }
+
+//   dispatchEvent(eventType, target, originalEvent) {
+//     let currentTarget = target;
+//     while (currentTarget) {
+//       if (currentTarget.listeners && currentTarget.listeners[eventType]) {
+//         const event = {
+//           type: eventType,
+//           target: target,
+//           currentTarget: currentTarget,
+//           originalEvent: originalEvent
+//         };
+//         currentTarget.listeners[eventType].forEach(listener => listener(event));
+//       }
+//       currentTarget = currentTarget.parent;
+//     }
+//   }
+
+//   addListener(node, eventType, listener) {
+//     if (!node.listeners) node.listeners = {};
+//     if (!node.listeners[eventType]) node.listeners[eventType] = [];
+//     node.listeners[eventType].push(listener);
+//   }
+// }
 
 export abstract class Stage extends Container<Group> {
   override name = 'Stage';
@@ -56,41 +121,70 @@ export abstract class Stage extends Container<Group> {
     this._tick(currentTime, this.ctx);
   };
 
-  private _onClick = (event: MouseEvent) => {
-    for (let i = this.children.length - 1; i >= 0; i--) {
-      if (this.children[i].eventEnabled && this.children[i].isIntersection(event.x, event.y)) {
-        this.children[i].dispatchEvent('onClick', event);
-      }
+  private dispatchEventToChildren(eventType: EventType, e: MouseEvent): void {
+    const { x, y } = getRelativeMousePosition(e, this.canvas);
+    const target = this.hitTest(x, y);
+
+    if (target) {
+      const eventData: EventData = { type: eventType, target: target, point: { x, y }, originalEvent: e };
+      target.call(eventType, eventData, true);
     }
+  }
+
+  // private dispatchEventToChildren(event: string, mouseEvent: MouseEvent, node: Node | Container) {
+  //   if (node instanceof Container) {
+  //     for (let i = node.children.length - 1; i >= 0; i--) {
+  //       const child = node.children[i];
+  //       if (this.dispatchEventToChildren(event, mouseEvent, child)) {
+  //         // return true; // 이벤트가 처리되었으면 true를 반환
+  //       }
+  //     }
+  //   }
+
+  //   const { x, y } = getRelativeMousePosition(mouseEvent, this.canvas);
+  //   if (node.eventEnabled && node.isIntersection(x, y)) {
+  //     node.dispatchEvent(event, mouseEvent);
+  //     // return true; // 이벤트가 처리되었음을 나타냄
+  //   }
+
+  //   return false; // 이벤트가 처리되지 않았음
+  // }
+
+  private handleMouseEvent = (event: EventType, mouseEvent: MouseEvent) => {
+    this.dispatchEventToChildren(event, mouseEvent);
+  };
+
+  private _onClick = (event: MouseEvent) => {
+    this.handleMouseEvent('click', event);
   };
 
   private _onMouseDown = (event: MouseEvent) => {
-    for (let i = this.children.length - 1; i >= 0; i--) {
-      if (this.children[i].eventEnabled && this.children[i].isIntersection(event.x, event.y)) {
-        this.children[i].dispatchEvent('onMouseDown', event);
-      }
-    }
+    this.handleMouseEvent('mousedown', event);
   };
 
   private _onMouseMove = (event: MouseEvent) => {
-    for (let i = this.children.length - 1; i >= 0; i--) {
-      if (this.children[i].eventEnabled && this.children[i].isIntersection(event.x, event.y)) {
-        this.children[i].dispatchEvent('onMouseMove', event);
-      }
-    }
+    this.handleMouseEvent('mousemove', event);
   };
 
   private _onMouseUp = (event: MouseEvent) => {
-    for (let i = this.children.length - 1; i >= 0; i--) {
-      if (this.children[i].eventEnabled && this.children[i].isIntersection(event.x, event.y)) {
-        this.children[i].dispatchEvent('onMouseUp', event);
-      }
-    }
+    this.handleMouseEvent('mouseup', event);
   };
 
   private _onResize = () => {
     this.canvas.width = document.body.clientWidth;
     this.canvas.height = document.body.clientHeight;
+
+    const dpr = window.devicePixelRatio || 2;
+    const displayWidth = document.body.clientWidth;
+    const displayHeight = document.body.clientHeight;
+
+    this.canvas.width = displayWidth * dpr;
+    this.canvas.height = displayHeight * dpr;
+
+    this.canvas.style.width = `${displayWidth}px`;
+    this.canvas.style.height = `${displayHeight}px`;
+
+    this.ctx.scale(dpr, dpr);
   };
 
   destroy = () => {

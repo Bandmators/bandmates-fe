@@ -1,14 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export class Statable {
-  events: Map<string, any> = new Map();
+import { EventData, EventHandler, EventType } from '../types';
 
-  on(str: string, callback: any) {
-    this.events.set(str, callback);
+export class Statable {
+  events: Map<EventType, Set<EventHandler>> = new Map();
+  parent: Statable | null = null;
+
+  on(eventType: EventType, handler: EventHandler) {
+    if (!this.events.has(eventType)) {
+      this.events.set(eventType, new Set());
+    }
+    this.events.get(eventType)!.add(handler);
   }
-  off(str: string) {
-    this.events.delete(str);
+
+  off(eventType: EventType, handler: EventHandler) {
+    this.events.get(eventType)?.delete(handler);
   }
-  call(str: string, ...args: any[]) {
-    this.events.get(str)(...args);
+
+  call(eventType: string, eventData: EventData, eventBubble = false) {
+    const handlers = this.events.get(eventData.type);
+    handlers?.forEach(handler => handler(eventData));
+
+    if (eventBubble) this.parent?.call(eventType, eventData, eventBubble);
   }
 }

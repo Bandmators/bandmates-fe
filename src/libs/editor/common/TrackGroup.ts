@@ -4,10 +4,9 @@ import { TrackDataType } from '../types';
 
 export class TrackGroup extends Group {
   override name = 'TrackGroup';
+
   constructor(private data: TrackDataType[] = []) {
     super();
-    console.log(data);
-    // data.forEach(child => this.add(new Track(child)));
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

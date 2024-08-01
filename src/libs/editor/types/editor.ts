@@ -27,4 +27,5 @@ export type EditorDataType = {
 export type EditorStyleType = {
   gapHeight: number;
   gapWidth: number;
+  timeDivde: number; // 5 or 10
 };

@@ -26,7 +26,7 @@ export class Timeline {
 
     this._ctx.lineWidth = 1;
 
-    const divide = 5; // or 10
+    const divide = this.style.timeDivde;
     for (let i = 0; i < this._timeEnd; i++) {
       const begin = this.style.gapWidth * divide * i;
 

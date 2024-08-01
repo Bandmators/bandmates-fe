@@ -44,7 +44,8 @@ export class Editor extends Stage {
 
   style: EditorStyleType = {
     gapHeight: 10,
-    gapWidth: 20,
+    gapWidth: 10,
+    timeDivde: 10,
   };
 
   constructor(element: HTMLCanvasElement, data: EditorDataType[]) {
@@ -58,7 +59,6 @@ export class Editor extends Stage {
     this.timeline = new Timeline(this.ctx, this.style, 100, 0);
 
     this.data.forEach(d => {
-      console.log(d);
       this.addTrackGroup(d.tracks);
       // this.addWave(d);
       // this.waves.push(new Wave(this.ctx, d, this.style, 100));
