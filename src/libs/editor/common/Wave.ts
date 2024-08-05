@@ -7,7 +7,6 @@ export class Wave extends Node {
   constructor(
     private data: SongDataType,
     private style: EditorStyleType,
-    private _scrollX: number,
     private waveHeight = 45,
   ) {
     super();
@@ -17,9 +16,7 @@ export class Wave extends Node {
     this.width = 1 * this.style.gapWidth * this.data.long;
     this.height = this.waveHeight;
 
-    this.on('mousemove', (evt: unknown) => {
-      console.log('WAVE MOUSE MOVE', evt);
-    });
+    this.on('mousemove', () => {});
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -27,7 +24,6 @@ export class Wave extends Node {
 
   override draw(ctx: CanvasRenderingContext2D) {
     ctx.save();
-    // ctx.translate(-this._scrollX, 0);
 
     ctx.roundRect(this.x, this.y, this.width, this.height);
     ctx.fillStyle = '#c3c3c3';

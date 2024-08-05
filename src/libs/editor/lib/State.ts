@@ -15,7 +15,7 @@ export class Statable {
     this.events.get(eventType)?.delete(handler);
   }
 
-  call(eventType: string, eventData: EventData, eventBubble = false) {
+  call(eventType: string, eventData: EventData, eventBubble = true) {
     const handlers = this.events.get(eventData.type);
     handlers?.forEach(handler => handler(eventData));
 

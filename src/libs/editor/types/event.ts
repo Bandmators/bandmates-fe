@@ -1,6 +1,6 @@
 import { Node } from '../';
 
-export type EventType = 'click' | 'mousemove' | 'mousedown' | 'mouseup';
+export type EventType = 'click' | 'mousemove' | 'mousedown' | 'mouseup' | 'mouseleave';
 
 export interface EventData {
   type: EventType;

@@ -6,6 +6,7 @@ export abstract class Node extends Statable {
   y = 0;
   width = 0;
   height = 0;
+
   eventEnabled = true;
 
   abstract update(currentTime: number): void;
