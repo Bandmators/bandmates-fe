@@ -1,4 +1,4 @@
-import { Node } from '../lib';
+import { Node } from '../core';
 import { EditorStyleType, SongDataType } from '../types/editor';
 
 export class Wave extends Node {

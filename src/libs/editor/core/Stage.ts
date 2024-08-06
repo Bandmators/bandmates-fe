@@ -1,6 +1,6 @@
+import { Container, Group } from '.';
 import { EventData, EventType } from '../types';
 import { getRelativeMousePosition } from '../utils/position';
-import { Container, Group } from './';
 
 // export class EventManager {
 //   stage;

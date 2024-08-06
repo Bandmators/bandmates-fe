@@ -1,5 +1,5 @@
 import { SongDataType } from '..';
-import { Group } from '../lib';
+import { Group } from '../core';
 
 export class Track extends Group {
   override name = 'Track';

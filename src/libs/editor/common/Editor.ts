@@ -1,4 +1,4 @@
-import { Group, Stage } from '../lib';
+import { Group, Stage } from '../core';
 import { EventData } from '../types';
 import { EditorDataType, EditorStyleType, SongDataType, TrackDataType } from '../types/editor';
 import { Timeline } from './Timeline';

@@ -1,4 +1,4 @@
-import { Node } from '../lib';
+import { Node } from '../core';
 import { EditorStyleType } from '../types/editor';
 
 export class Timeline extends Node {

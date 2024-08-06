@@ -1,5 +1,5 @@
 // import { Track } from './Track';
-import { Group } from '../lib';
+import { Group } from '../core';
 import { TrackDataType } from '../types';
 
 export class TrackGroup extends Group {
