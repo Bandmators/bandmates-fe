@@ -17,8 +17,8 @@ export class Timeline extends Node {
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  override update(_currentTime: number) {
-    this._dT = _currentTime;
+  override update(_dT: number) {
+    this._dT = _dT;
   }
 
   override draw(ctx: CanvasRenderingContext2D) {
@@ -65,7 +65,6 @@ export class Timeline extends Node {
   drawRedLine(ctx: CanvasRenderingContext2D) {
     this._timeRedLinePosX += this.style.gapWidth * 10 * this._dT;
     // if (this._timeRedLinePosX > ctx.canvas.width) this._timeRedLinePosX = 0;
-    console.log(this._timeRedLinePosX);
 
     ctx.save();
 

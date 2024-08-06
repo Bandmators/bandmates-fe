@@ -110,7 +110,7 @@ export abstract class Stage extends Container<Group> {
 
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.save();
-      this._tick(currentTime, this.ctx);
+      this._tick(this.dT, this.ctx);
       this.ctx.restore();
     };
     this._raf = requestAnimationFrame(ticker);

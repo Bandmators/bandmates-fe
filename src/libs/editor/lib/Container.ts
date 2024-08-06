@@ -26,8 +26,8 @@ export abstract class Container<ChildType extends Node = Node> extends Node {
     return null;
   }
 
-  override _tick(currentTime: number, ctx: CanvasRenderingContext2D) {
-    super._tick(currentTime, ctx);
-    this.children.forEach(child => child._tick(currentTime, ctx));
+  override _tick(dT: number, ctx: CanvasRenderingContext2D) {
+    super._tick(dT, ctx);
+    this.children.forEach(child => child._tick(dT, ctx));
   }
 }

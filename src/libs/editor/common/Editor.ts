@@ -30,44 +30,46 @@ export class Editor extends Stage {
   }
 
   private _initLayout = () => {
+    this.data.forEach(d => {
+      this.addTrackGroup(d.tracks);
+    });
+
     this.timeline = new Timeline(this.style, 100, 0);
 
     const group = new Group();
     group.add(this.timeline);
     this.add(group);
-
-    this.data.forEach(d => {
-      this.addTrackGroup(d.tracks);
-    });
   };
 
   private _initEvent = () => {
     let isDragging = false;
     let startX = 0;
+    let moveX = 0;
 
     this.on('mousedown', (evt: EventData) => {
       isDragging = true;
       startX = evt.originalEvent.clientX;
-
-      // Timeline의 위치를 클릭한 곳으로 변경
-      if (this.timeline) {
-        const rect = this.canvas.getBoundingClientRect();
-        const clickX = evt.originalEvent.clientX - rect.left + this.scrollX;
-        this.timeline.setRedLinePos(clickX);
-      }
+      moveX = evt.originalEvent.clientX;
     });
 
     this.on('mousemove', (evt: EventData) => {
       if (isDragging) {
-        const deltaX = evt.originalEvent.clientX - startX;
-        this.scrollX += deltaX;
-        startX = evt.originalEvent.clientX;
-        // 여기서 render를 호출하지 않습니다. update 메서드에서 처리됩니다.
+        const deltaX = evt.originalEvent.clientX - moveX;
+        this.scrollX = Math.max(this.scrollX + deltaX, 0);
+        moveX = evt.originalEvent.clientX;
       }
     });
 
-    this.on('mouseup', () => {
+    this.on('mouseup', (evt: EventData) => {
       isDragging = false;
+
+      const endX = evt.originalEvent.clientX;
+
+      if (startX === endX && this.timeline) {
+        const rect = this.canvas.getBoundingClientRect();
+        const clickX = evt.originalEvent.clientX - rect.left + this.scrollX;
+        this.timeline.setRedLinePos(clickX);
+      }
     });
 
     this.on('mouseleave', () => {
@@ -96,7 +98,7 @@ export class Editor extends Stage {
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  override update(currentTime: number) {}
+  override update(dT: number) {}
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
   override draw(ctx: CanvasRenderingContext2D) {

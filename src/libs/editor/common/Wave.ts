@@ -20,12 +20,12 @@ export class Wave extends Node {
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  override update(_currentTime: number) {}
+  override update(_dT: number) {}
 
   override draw(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
-    ctx.roundRect(this.x, this.y, this.width, this.height);
+    ctx.roundRect(this.x, this.y, this.width, this.height, 8);
     ctx.fillStyle = '#c3c3c3';
     ctx.fill();
 
