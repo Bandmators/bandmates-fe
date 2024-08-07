@@ -23,6 +23,7 @@ export abstract class Container<ChildType extends Node = Node> extends Node {
       const hitChild = this.children[i].hitTest(x, y);
       if (hitChild) return hitChild;
     }
+    if (this.isIntersection(x, y)) return this;
     return null;
   }
 

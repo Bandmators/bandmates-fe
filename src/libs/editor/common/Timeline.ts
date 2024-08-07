@@ -31,39 +31,39 @@ export class Timeline extends Node {
 
     ctx.lineWidth = 1;
 
-    const divide = this.style.timeDivde;
+    const divide = this.style.timeline.timeDivde;
     for (let i = 0; i < this._timeEnd; i++) {
-      const begin = this.style.gapWidth * divide * i;
+      const begin = this.style.timeline.gapWidth * divide * i;
 
-      ctx.strokeStyle = '#999999';
+      ctx.strokeStyle = this.style.theme.strokeLineColor;
       ctx.beginPath();
       ctx.moveTo(begin, this.posY);
-      ctx.lineTo(begin, this.posY + this.style.gapHeight);
+      ctx.lineTo(begin, this.posY + this.style.timeline.gapHeight);
       ctx.stroke();
 
-      ctx.strokeStyle = '#e3e3e3';
+      ctx.strokeStyle = this.style.theme.lineColor;
       ctx.textAlign = 'center';
       ctx.fillText(`${i}s`, begin, this.posY - 3);
 
       for (let j = 1; j < divide; j++) {
         ctx.beginPath();
-        ctx.moveTo(begin + j * this.style.gapWidth, this.posY);
-        ctx.lineTo(begin + j * this.style.gapWidth, this.posY + this.style.gapHeight / 2);
+        ctx.moveTo(begin + j * this.style.timeline.gapWidth, this.posY);
+        ctx.lineTo(begin + j * this.style.timeline.gapWidth, this.posY + this.style.timeline.gapHeight / 2);
         ctx.stroke();
       }
     }
 
-    ctx.strokeStyle = '#e3e3e3';
+    ctx.strokeStyle = this.style.theme.lineColor;
     ctx.beginPath();
     ctx.moveTo(0, this.posY);
-    ctx.lineTo(this.style.gapWidth * divide * this._timeEnd, this.posY);
+    ctx.lineTo(this.style.timeline.gapWidth * divide * this._timeEnd, this.posY);
     ctx.stroke();
 
     ctx.restore();
   }
 
   drawRedLine(ctx: CanvasRenderingContext2D) {
-    this._timeRedLinePosX += this.style.gapWidth * 10 * this._dT;
+    this._timeRedLinePosX += this.style.timeline.gapWidth * 10 * this._dT;
     // if (this._timeRedLinePosX > ctx.canvas.width) this._timeRedLinePosX = 0;
 
     ctx.save();

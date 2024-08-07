@@ -25,7 +25,21 @@ export type EditorDataType = {
 //   instrument: InstrumentType;
 // };
 export type EditorStyleType = {
-  gapHeight: number;
-  gapWidth: number;
-  timeDivde: number; // 5 or 10
+  theme: {
+    background: string;
+    lineColor: string;
+    strokeLineColor: string;
+  };
+  timeline: {
+    gapHeight: number;
+    gapWidth: number;
+    timeDivde: number; // 5 or 10
+  };
+  sidebar: {
+    width: number;
+  };
+  wave: {
+    height: number;
+    borderRadius: number;
+  };
 };

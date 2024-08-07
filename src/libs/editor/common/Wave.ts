@@ -7,14 +7,13 @@ export class Wave extends Node {
   constructor(
     private data: SongDataType,
     private style: EditorStyleType,
-    private waveHeight = 45,
   ) {
     super();
 
-    this.x = 1 * this.style.gapWidth * this.data.start;
-    this.y = 50 + (this.waveHeight + 20) * this.data.group;
-    this.width = 1 * this.style.gapWidth * this.data.long;
-    this.height = this.waveHeight;
+    this.x = 1 * this.style.timeline.gapWidth * this.data.start;
+    this.y = 50 + (this.style.wave.height + 20) * this.data.group;
+    this.width = 1 * this.style.timeline.gapWidth * this.data.long;
+    this.height = this.style.wave.height;
 
     this.on('mousemove', () => {});
   }
@@ -25,7 +24,7 @@ export class Wave extends Node {
   override draw(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
-    ctx.roundRect(this.x, this.y, this.width, this.height, 8);
+    ctx.roundRect(this.x, this.y, this.width, this.height, this.style.wave.borderRadius);
     ctx.fillStyle = '#c3c3c3';
     ctx.fill();
 

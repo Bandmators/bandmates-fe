@@ -9,7 +9,7 @@ const data: EditorDataType[] = [
     name: 'bgm',
     tracks: [
       {
-        category: '',
+        category: 'Category 1',
         songs: [
           {
             src: '',
@@ -35,7 +35,7 @@ const data: EditorDataType[] = [
     name: 'effect',
     tracks: [
       {
-        category: '',
+        category: 'Category 2',
         songs: [
           {
             src: '',

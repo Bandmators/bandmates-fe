@@ -2,69 +2,6 @@ import { Container, Group } from '.';
 import { EventData, EventType } from '../types';
 import { getRelativeMousePosition } from '../utils/position';
 
-// export class EventManager {
-//   stage;
-//   canvas;
-//   listeners;
-
-//   constructor(stage: Stage) {
-//     this.stage = stage;
-//     this.canvas = stage.canvas;
-//     this.listeners = {};
-
-//     this.setupListeners();
-//   }
-
-//   setupListeners() {
-//     const events = ['click', 'mousemove', 'mousedown', 'mouseup'];
-//     events.forEach(eventType => {
-//       this.canvas.addEventListener(eventType, (e) => this.handleEvent(eventType, e));
-//     });
-//   }
-
-//   handleEvent(eventType: string, e: any) {
-//     const point = this.getMousePosition(e);
-//     const target = this.hitTest(point);
-//     this.dispatchEvent(eventType, target, e);
-//   }
-
-//   getMousePosition(e) {
-//     const rect = this.canvas.getBoundingClientRect();
-//     return {
-//       x: e.clientX - rect.left,
-//       y: e.clientY - rect.top
-//     };
-//   }
-
-//   hitTest(point: any) {
-//     // 여기에 히트 테스팅 로직 구현
-//     // Stage부터 시작해서 Node까지 재귀적으로 검사
-//     return this.stage.hitTest(point);
-//   }
-
-//   dispatchEvent(eventType, target, originalEvent) {
-//     let currentTarget = target;
-//     while (currentTarget) {
-//       if (currentTarget.listeners && currentTarget.listeners[eventType]) {
-//         const event = {
-//           type: eventType,
-//           target: target,
-//           currentTarget: currentTarget,
-//           originalEvent: originalEvent
-//         };
-//         currentTarget.listeners[eventType].forEach(listener => listener(event));
-//       }
-//       currentTarget = currentTarget.parent;
-//     }
-//   }
-
-//   addListener(node, eventType, listener) {
-//     if (!node.listeners) node.listeners = {};
-//     if (!node.listeners[eventType]) node.listeners[eventType] = [];
-//     node.listeners[eventType].push(listener);
-//   }
-// }
-
 export abstract class Stage extends Container<Group> {
   override name = 'Stage';
   canvas: HTMLCanvasElement;
