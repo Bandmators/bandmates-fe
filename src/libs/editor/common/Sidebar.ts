@@ -7,6 +7,7 @@ class SideTrack extends Node {
     x: number,
     y: number,
     protected data: TrackDataType,
+    protected style: EditorStyleType,
   ) {
     super();
 
@@ -20,10 +21,11 @@ class SideTrack extends Node {
   draw(ctx: CanvasRenderingContext2D): void {
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle = 'red';
-    ctx.font = '48px serif';
+    ctx.fillStyle = 'black';
+    ctx.font = '24px Barlow';
     ctx.textBaseline = 'top';
     ctx.fillText(this.data.category, this.x, this.y);
+
     ctx.restore();
   }
 }
@@ -41,7 +43,7 @@ export class Sidebar extends Group {
     data.forEach(editorData => {
       editorData.tracks.forEach(track => {
         console.log('Creat', track.category);
-        this.add(new SideTrack(0, y, track));
+        this.add(new SideTrack(0, y, track, this.style));
         y += this.style.wave.height;
       });
     });

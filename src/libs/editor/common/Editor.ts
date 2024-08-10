@@ -7,6 +7,7 @@ export class Editor extends Stage {
   override name = 'BEditor';
 
   data: EditorDataType[] = [];
+  _workground: Workground | undefined;
 
   style: EditorStyleType = {
     theme: {
@@ -39,8 +40,8 @@ export class Editor extends Stage {
   }
 
   private _initLayout = () => {
-    const workgounrd = new Workground(this.canvas, this.style, this.data);
-    this.add(workgounrd);
+    this._workground = new Workground(this.canvas, this.style, this.data);
+    this.add(this._workground);
 
     const sidebar = new Sidebar(this.style, this.data);
     this.add(sidebar);
@@ -51,4 +52,20 @@ export class Editor extends Stage {
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
   override draw(ctx: CanvasRenderingContext2D) {}
+
+  isPlaying() {
+    return this._workground?.isPlaying();
+  }
+
+  play() {
+    this._workground?.play();
+  }
+
+  pause() {
+    this._workground?.pause();
+  }
+
+  stop() {
+    this._workground?.stop();
+  }
 }

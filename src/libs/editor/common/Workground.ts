@@ -26,12 +26,12 @@ export class Workground extends Group {
   }
 
   private _initLayout = (data: EditorDataType[]) => {
-    this.timeline = new Timeline(this.style, 100, 0);
-    this.add(this.timeline);
-
     data.forEach(tGroup => {
       this.addTrackGroup(tGroup.tracks);
     });
+
+    this.timeline = new Timeline(this.style, 100, 0);
+    this.add(this.timeline);
   };
 
   private _initEvent = () => {
@@ -88,6 +88,22 @@ export class Workground extends Group {
     const wave = new Wave(data, this.style);
     parent.add(wave);
     return wave;
+  }
+
+  isPlaying() {
+    return this.timeline?.isPlaying();
+  }
+
+  play() {
+    this.timeline?.play();
+  }
+
+  pause() {
+    this.timeline?.pause();
+  }
+
+  stop() {
+    this.timeline?.stop();
   }
 
   /* eslint-disable @typescript-eslint/no-unused-vars */

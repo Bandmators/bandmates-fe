@@ -6,6 +6,7 @@ export class Timeline extends Node {
 
   private _dT: number = 0;
   private _timeRedLinePosX: number = 0;
+  private _isPlaying = false;
 
   constructor(
     private style: EditorStyleType,
@@ -16,7 +17,6 @@ export class Timeline extends Node {
     super();
   }
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   override update(_dT: number) {
     this._dT = _dT;
   }
@@ -63,7 +63,7 @@ export class Timeline extends Node {
   }
 
   drawRedLine(ctx: CanvasRenderingContext2D) {
-    this._timeRedLinePosX += this.style.timeline.gapWidth * 10 * this._dT;
+    if (this.isPlaying()) this._timeRedLinePosX += this.style.timeline.gapWidth * 10 * this._dT;
     // if (this._timeRedLinePosX > ctx.canvas.width) this._timeRedLinePosX = 0;
 
     ctx.save();
@@ -96,5 +96,22 @@ export class Timeline extends Node {
 
   get scrollX() {
     return this._scrollX;
+  }
+
+  isPlaying() {
+    return this._isPlaying;
+  }
+
+  play() {
+    this._isPlaying = true;
+  }
+
+  pause() {
+    this._isPlaying = false;
+  }
+
+  stop() {
+    this.pause();
+    this._timeRedLinePosX = 0;
   }
 }

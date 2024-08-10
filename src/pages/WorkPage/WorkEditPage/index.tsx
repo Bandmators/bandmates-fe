@@ -69,6 +69,7 @@ const WorkEditPage = () => {
       // data.forEach(d => {
       //   editor.current?.add(new TrackGroup(d.songs));
       // });
+      // editor.current.play();
     }
     return () => {
       if (editor.current) {
